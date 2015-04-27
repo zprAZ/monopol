@@ -2,10 +2,10 @@
 
 <chances>
 	<chance>
-		<class></class>
-		<type></type>
+		<type>GO</type>
+		<queue>JUST_CHANCE</queue>
 		</id>1</id>
-		<text></text>
+		<text>go to start</text>
 	</chance>
 
 </chances>

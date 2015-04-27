@@ -6,9 +6,10 @@ namespace monopoly
 	
 class board_place
 {
-	protected
+protected
 	const int id_m;
-	public:
+public:
+	enum class type: int {CORNER_PLACE = 0, RAILWAYS_PLACE = 1, COUNTER_PLACE = 2, CHANCE_PLACE = 3, }
 	board_place(int id_inp):id_m(id_inp){};
 	int get_id() const {return id_m;}
 	virtual ~board_place() {};
