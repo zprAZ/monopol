@@ -1,9 +1,10 @@
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#ifndef MONOPOLY_PLAYER_HPP
+#define MONOPOLY_PLAYER_HPP
 
 namespace monopoly
 {
 
+class player_visitor;
 
 class player
 {
@@ -18,9 +19,10 @@ public:
 		return true;
 		} else 
 		return false;		
-	}		
+	}
+	virtual void accept(const player_visitor& visitor) = 0;		
 };
 
-}
+} // namespace monopoly
 
-#endif
+#endif // MONOPOLY_PLAYER_HPP

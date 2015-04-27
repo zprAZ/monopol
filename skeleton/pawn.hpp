@@ -14,7 +14,7 @@ class pawn
 	virtual int get_last_movement() = 0;
 };
 
-} // end monopoly
+} // namespace monopoly
 
 
-#endif
+#endif // MONOPOLY_PAWN_HPP
