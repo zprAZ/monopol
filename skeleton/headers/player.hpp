@@ -9,7 +9,7 @@ class player_visitor;
 class player
 {
 protected:
-	double money;
+	long money;
 public:
 	player(const double& inp_money):money(inp_money){}; 
 	virtual ~player();
