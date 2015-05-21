@@ -12,7 +12,7 @@ class boardWidget : public QWidget
 public:
     enum class playerColor:int {RED, GREEN, BLUE, YELLOW, NO_COLOR};
     enum class alignment: int {NOALIGNMENT = 0, BOTTOM = 1, TOP = 2, LEFT = 3, RIGHT = 4};
-    enum class windowSize: int {SQUARED = 120, RECTANGLE_WIDTH = 60, RECTANGLE_HEIGHT = 120};
+    enum class windowSize: int {SQUARED = 200, RECTANGLE_WIDTH = 100, RECTANGLE_HEIGHT = 200};
     explicit boardWidget(int inpId, boardWidget::alignment inpAlign, QWidget *parent = 0);
     QColor playerColor2QColor(const playerColor& inp) const;
     QSize sizeHint() const;

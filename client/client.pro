@@ -7,7 +7,8 @@ HEADERS += \
     counterWidget.h \
     taxWidget.h \
     centralWidget.h \
-    mainWidget.h
+    mainWidget.h \
+    mainWindow.h
 
 SOURCES += \
     boardWidget.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     taxWidget.cpp \
     centralWidget.cpp \
     mainWidget.cpp \
-    main.cpp
+    main.cpp \
+    mainWindow.cpp
 
 QMAKE_CXXFLAGS += -std=c++11

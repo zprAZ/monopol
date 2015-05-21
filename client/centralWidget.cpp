@@ -30,6 +30,7 @@ centralWidget::centralWidget(QWidget *parent) :
     verticalLayout ->addStretch();
     QPushButton* diceButton = new QPushButton;
     diceButton ->setText(tr("PLAY DICE"));
+    diceButton ->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::MinimumExpanding);
     QObject::connect(diceButton, SIGNAL(clicked()), this, SLOT(handleDice()));
     verticalLayout ->addWidget(diceButton);
     QGroupBox* rightBox = new QGroupBox;
