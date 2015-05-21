@@ -31,14 +31,14 @@ static const uint qt_meta_data_railwayWidget[] = {
 
  // slots: signature, parameters, type, tag, flags
       27,   15,   14,   14, 0x0a,
-      73,   66,   14,   14, 0x0a,
+      86,   79,   14,   14, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_railwayWidget[] = {
     "railwayWidget\0\0id,flag,inp\0"
-    "setOwnershipFlag(int,bool,playerColor)\0"
+    "setOwnershipFlag(int,bool,boardWidget::playerColor)\0"
     "id,inp\0setMortgageFlag(int,bool)\0"
 };
 
@@ -48,7 +48,7 @@ void railwayWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         Q_ASSERT(staticMetaObject.cast(_o));
         railwayWidget *_t = static_cast<railwayWidget *>(_o);
         switch (_id) {
-        case 0: _t->setOwnershipFlag((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])),(*reinterpret_cast< playerColor(*)>(_a[3]))); break;
+        case 0: _t->setOwnershipFlag((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])),(*reinterpret_cast< boardWidget::playerColor(*)>(_a[3]))); break;
         case 1: _t->setMortgageFlag((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         default: ;
         }

@@ -13,12 +13,12 @@ void chanceWidget::paintItself(QPainter& inp)
 {
     inp.save();
     QRect window = inp.window();
-        inp.drawText(window, name_m, QTextOption(Qt::AlignTop));
+        inp.drawText(window, name_m, QTextOption(Qt::AlignTop | Qt::AlignHCenter));
         QTextOption option;
         option.setAlignment(Qt::AlignCenter);
         QFont font;
         font.setBold(true);
-        font.setPointSize(30);
+        font.setPointSize(static_cast<int>(windowSize::RECTANGLE_HEIGHT)/4);
         inp.setFont(font);
         inp.setPen(QPen(Qt::blue));
         inp.drawText(window, QString("?"), QTextOption(option));

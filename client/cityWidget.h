@@ -13,11 +13,11 @@ public:
                boardWidget::alignment align = alignment::BOTTOM, QWidget *parent = 0);
     void setName(const QString& inp);
     enum class drawParams:int {
-        NAME_RECT_HEIGHT = 30,
-        HOUSE_WIDTH = 30,
-        HOUSE_HEIGHT = 25,
-        HOTEL_WIDTH = 70,
-        HOTEL_HEIGHT = 60
+        NAME_RECT_HEIGHT = static_cast<int>(30./200.0*static_cast<double>(windowSize::RECTANGLE_HEIGHT)),
+        HOUSE_WIDTH = static_cast<int>(30.0/100.0*static_cast<double>(windowSize::RECTANGLE_WIDTH)),
+        HOUSE_HEIGHT = static_cast<int>(25.0/200.0*static_cast<double>(windowSize::RECTANGLE_HEIGHT)),
+        HOTEL_WIDTH = static_cast<int>(50.0/100.0*static_cast<double>(windowSize::RECTANGLE_WIDTH)),
+        HOTEL_HEIGHT = static_cast<int>(60.0/200.0*static_cast<double>(windowSize::RECTANGLE_HEIGHT))
         // ZCU_TODO
         // arbirary numbers should be replaced by window size depending variables
     };

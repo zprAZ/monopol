@@ -33,30 +33,30 @@ static const uint qt_meta_data_mainWidget[] = {
       12,   11,   11,   11, 0x05,
       35,   21,   11,   11, 0x05,
       81,   21,   11,   11, 0x05,
-     132,  126,   11,   11, 0x05,
-     153,  145,   11,   11, 0x05,
-     180,  176,   11,   11, 0x05,
-     197,  176,   11,   11, 0x05,
-     212,  176,   11,   11, 0x05,
-     238,  231,   11,   11, 0x05,
-     259,  256,   11,   11, 0x05,
-     279,  231,   11,   11, 0x05,
-     311,  297,   11,   11, 0x05,
-     361,  231,   11,   11, 0x05,
+     126,   11,   11,   11, 0x05,
+     147,  139,   11,   11, 0x05,
+     170,   11,   11,   11, 0x05,
+     187,   11,   11,   11, 0x05,
+     202,   11,   11,   11, 0x05,
+     228,  221,   11,   11, 0x05,
+     249,  246,   11,   11, 0x05,
+     269,  221,   11,   11, 0x05,
+     301,  287,   11,   11, 0x05,
+     351,  221,   11,   11, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     402,  385,   11,   11, 0x0a,
-     426,  385,   11,   11, 0x0a,
-     451,  126,   11,   11, 0x0a,
-     469,  145,   11,   11, 0x0a,
-     493,  176,   11,   11, 0x0a,
-     515,  176,   11,   11, 0x0a,
-     535,  176,   11,   11, 0x0a,
-     559,  231,   11,   11, 0x0a,
-     577,  256,   11,   11, 0x0a,
-     598,  231,   11,   11, 0x0a,
+     392,  375,   11,   11, 0x0a,
+     416,  375,   11,   11, 0x0a,
+     447,  441,   11,   11, 0x0a,
+     465,  139,   11,   11, 0x0a,
+     493,  489,   11,   11, 0x0a,
+     515,  489,   11,   11, 0x0a,
+     535,  489,   11,   11, 0x0a,
+     559,  221,   11,   11, 0x0a,
+     577,  246,   11,   11, 0x0a,
+     598,  221,   11,   11, 0x0a,
      637,  616,   11,   11, 0x0a,
-     668,  231,   11,   11, 0x0a,
+     668,  221,   11,   11, 0x0a,
 
        0        // eod
 };
@@ -65,20 +65,20 @@ static const char qt_meta_stringdata_mainWidget[] = {
     "mainWidget\0\0dice_s()\0placeId,color\0"
     "tokenEntering_s(int,boardWidget::playerColor)\0"
     "tokenLeaving_s(int,boardWidget::playerColor)\0"
-    "round\0round_s(int)\0message\0"
-    "sendMessage_s(QString)\0inp\0wealth_s(double)\0"
-    "cash_s(double)\0prisonCards_s(int)\0"
-    "id,inp\0house_s(int,bool)\0id\0"
-    "deleteHouses_s(int)\0hotel_s(int,bool)\0"
+    "round_s(int)\0message\0sendMessage_s(QString)\0"
+    "wealth_s(double)\0cash_s(double)\0"
+    "prisonCards_s(int)\0id,inp\0house_s(int,bool)\0"
+    "id\0deleteHouses_s(int)\0hotel_s(int,bool)\0"
     "id,flag,color\0"
     "setOwnership_s(int,bool,boardWidget::playerColor)\0"
     "setMortgage_s(int,bool)\0placeId,playerId\0"
     "tokenIsLeaving(int,int)\0"
-    "tokenIsEntering(int,int)\0displayRound(int)\0"
-    "displayMessage(QString)\0displayWealth(double)\0"
-    "displayCash(double)\0displayPrisonCards(int)\0"
-    "doHouse(int,bool)\0deleteAllHouses(int)\0"
-    "doHotel(int,bool)\0id,flag,playerNumber\0"
+    "tokenIsEntering(int,int)\0round\0"
+    "displayRound(int)\0displayMessage(QString)\0"
+    "inp\0displayWealth(double)\0displayCash(double)\0"
+    "displayPrisonCards(int)\0doHouse(int,bool)\0"
+    "deleteAllHouses(int)\0doHotel(int,bool)\0"
+    "id,flag,playerNumber\0"
     "setOwnershipFlag(int,bool,int)\0"
     "setMortgageFlag(int,bool)\0"
 };

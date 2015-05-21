@@ -12,15 +12,17 @@ void taxWidget::paintItself(QPainter& inp)
 {
     inp.save();
         inp.setBrush(QBrush(Qt::black, Qt::SolidPattern));
-        inp.drawRect(inp.window());
+        QRect rectangle = QRect(0,0,static_cast<int>(windowSize::RECTANGLE_WIDTH),
+                        static_cast<int>(windowSize::RECTANGLE_HEIGHT));
+        inp.drawRect(rectangle);
         inp.setPen(QPen(Qt::white));
-        inp.drawText(inp.window(), name_m, QTextOption(Qt::AlignHCenter | Qt::AlignTop));
-        inp.drawText(inp.window(), QString(value_m) + QString("$"),
+        inp.drawText(rectangle, name_m, QTextOption(Qt::AlignHCenter | Qt::AlignTop));
+        inp.drawText(rectangle, QString(value_m) + QString("$"),
                      QTextOption(Qt::AlignBottom | Qt::AlignHCenter));
         QFont dolarFont;
         dolarFont.setPointSize(30);
         inp.setFont(QFont(dolarFont));
-        inp.drawText(inp.window(),QString("$"), QTextOption(Qt::AlignCenter));
+        inp.drawText(rectangle,QString("$"), QTextOption(Qt::AlignCenter));
     inp.restore();
 }
 

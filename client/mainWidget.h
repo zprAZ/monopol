@@ -22,11 +22,11 @@ signals:
     void dice_s();
     void tokenEntering_s(int placeId, boardWidget::playerColor color);
     void tokenLeaving_s(int placeId, boardWidget::playerColor color);
-    void round_s(int round);
+    void round_s(int);
     void sendMessage_s(const QString& message);
-    void wealth_s(double inp);
-    void cash_s(double inp);
-    void prisonCards_s(int inp);
+    void wealth_s(double);
+    void cash_s(double);
+    void prisonCards_s(int);
     void house_s(int id, bool inp);
     void deleteHouses_s(int id);
     void hotel_s(int id, bool inp);

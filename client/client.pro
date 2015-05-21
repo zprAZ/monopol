@@ -18,6 +18,7 @@ SOURCES += \
     counterWidget.cpp \
     taxWidget.cpp \
     centralWidget.cpp \
-    mainWidget.cpp
+    mainWidget.cpp \
+    main.cpp
 
 QMAKE_CXXFLAGS += -std=c++11

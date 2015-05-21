@@ -17,7 +17,11 @@ public:
 signals:
     void pause(bool flag);
     void dice();
-
+    void round_s(QString);
+    void message_s(QString);
+    void wealth_s(QString);
+    void cash_s(QString);
+    void prisonCards_s(QString);
 public slots:
     void displayRound(int round);
     void displayMessage(const QString& message);
@@ -27,11 +31,6 @@ public slots:
 private slots:
     void handleDice();
 private:
-    QPlainTextEdit* messagesViewer;
-    QLabel* roundDisplayLabel;
-    QLabel* propertyDisplayLabel;
-    QLabel* moneyDisplayLabel;
-    QLabel* prisonFreeDisplayLabel;
 };
 
 #endif // CENTRALWIDGET_H

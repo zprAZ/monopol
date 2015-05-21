@@ -31,16 +31,16 @@ static const uint qt_meta_data_boardWidget[] = {
 
  // slots: signature, parameters, type, tag, flags
       20,   13,   12,   12, 0x0a,
-      53,   13,   12,   12, 0x0a,
-      85,   12,   12,   12, 0x0a,
+      66,   13,   12,   12, 0x0a,
+     111,   12,   12,   12, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_boardWidget[] = {
     "boardWidget\0\0id,inp\0"
-    "tokenIsEntering(int,playerColor)\0"
-    "tokenIsLeaving(int,playerColor)\0"
+    "tokenIsEntering(int,boardWidget::playerColor)\0"
+    "tokenIsLeaving(int,boardWidget::playerColor)\0"
     "displayHint()\0"
 };
 
@@ -50,8 +50,8 @@ void boardWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         Q_ASSERT(staticMetaObject.cast(_o));
         boardWidget *_t = static_cast<boardWidget *>(_o);
         switch (_id) {
-        case 0: _t->tokenIsEntering((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< playerColor(*)>(_a[2]))); break;
-        case 1: _t->tokenIsLeaving((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< playerColor(*)>(_a[2]))); break;
+        case 0: _t->tokenIsEntering((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< boardWidget::playerColor(*)>(_a[2]))); break;
+        case 1: _t->tokenIsLeaving((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< boardWidget::playerColor(*)>(_a[2]))); break;
         case 2: _t->displayHint(); break;
         default: ;
         }

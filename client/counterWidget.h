@@ -13,7 +13,7 @@ public:
 signals:
 
 public slots:
-    void setOwnershipFlag(int id, bool flag, playerColor inp);
+    void setOwnershipFlag(int id, bool flag, boardWidget::playerColor inp);
     void setMortgageFlag(int id, bool inp);
 
 private:

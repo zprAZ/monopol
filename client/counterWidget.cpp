@@ -9,7 +9,7 @@ counterWidget::counterWidget(const QString &name, int inpId, alignment inpAlign,
     frameColor_m = playerColor::NO_COLOR;
 }
 
-void counterWidget::setOwnershipFlag(int id, bool flag, playerColor inp)
+void counterWidget::setOwnershipFlag(int id, bool flag, boardWidget::playerColor inp)
 {
     if(id == id_m)
     {
@@ -40,8 +40,8 @@ void counterWidget::paintItself(QPainter& inp)
         inp.drawRect(0, 0, w_width, w_height); // outer rectangle
         // now we need to draw counter pattern
         inp.setBrush(QBrush(Qt::blue, Qt::VerPattern));
-        QRect patternRectangle(frameWidth_m, frameWidth_m, w_width-frameWidth_m,
-                        w_height - frameWidth_m);
+        QRect patternRectangle(frameWidth_m, frameWidth_m, w_width- 2*frameWidth_m,
+                        w_height - 2*frameWidth_m);
         inp.drawRect(patternRectangle);
         // now we need to draw name
         inp.drawText(patternRectangle, name_m, QTextOption(Qt::AlignTop| Qt::AlignHCenter));

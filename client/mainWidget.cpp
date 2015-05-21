@@ -15,7 +15,7 @@ mainWidget::mainWidget(QWidget *parent) :
                             QString("START"));
     allPlaces.push_back(start_w);
     // saloniki
-    cityWidget* saloniki = new cityWidget(1, QString("SALONIKI"));
+    cityWidget* saloniki = new cityWidget(1, QString("SALONIKI"), cityWidget::alignment::TOP);
     saloniki->setCityColor(Qt::yellow);
     cities.push_back(saloniki);
     allPlaces.push_back(saloniki);
@@ -23,7 +23,7 @@ mainWidget::mainWidget(QWidget *parent) :
     chanceWidget* chance1 = new chanceWidget(2, chanceWidget::alignment::TOP);
     allPlaces.push_back(chance1);
     // ateny
-    cityWidget* ateny = new cityWidget(3,QString("ATENY"));
+    cityWidget* ateny = new cityWidget(3,QString("ATENY"), cityWidget::alignment::TOP);
     ateny->setCityColor(Qt::yellow);
     cities.push_back(ateny);
     allPlaces.push_back(ateny);
@@ -55,8 +55,7 @@ mainWidget::mainWidget(QWidget *parent) :
     cities.push_back(rome);
     allPlaces.push_back(rome);
     // just visiting prison
-    cornerWidget* prisonVisiting = new cornerWidget(10, QString("VISITING prison"),
-                                                    cornerWidget::alignment::TOP);
+    cornerWidget* prisonVisiting = new cornerWidget(10, QString("VISITING prison"));
     allPlaces.push_back(prisonVisiting);
     // barcelona
     cityWidget* barcelona = new cityWidget(11, QString("BARCELONA"), cityWidget::alignment::RIGHT);
@@ -100,7 +99,7 @@ mainWidget::mainWidget(QWidget *parent) :
     cities.push_back(london);
     allPlaces.push_back(london);
     // free parking
-    cornerWidget* freeParking = new cornerWidget(20, QString("FREE PARKING"), cornerWidget::alignment::BOTTOM);
+    cornerWidget* freeParking = new cornerWidget(20, QString("FREE PARKING"));
     allPlaces.push_back(freeParking);
     // rotterdam
     cityWidget* rotterdam = new cityWidget(21, QString("ROTTERDAM"), cityWidget::alignment::BOTTOM);
@@ -142,7 +141,7 @@ mainWidget::mainWidget(QWidget *parent) :
     cities.push_back(sztokholm);
     allPlaces.push_back(sztokholm);
     // PRISON
-    cornerWidget* prison = new cornerWidget(30, QString("PRISON"), cornerWidget::alignment::BOTTOM);
+    cornerWidget* prison = new cornerWidget(30, QString("PRISON"));
     allPlaces.push_back(prison);
     // FRANKFURT
     cityWidget* frankfurt = new cityWidget(31, QString("FRANKFURT"), cityWidget::alignment::LEFT);
@@ -189,9 +188,9 @@ mainWidget::mainWidget(QWidget *parent) :
     for(QVector<boardWidget*>::iterator iter = allPlaces.begin(); iter != allPlaces.end(); ++iter)
     {
         QObject::connect(this, SIGNAL(tokenEntering_s(int,boardWidget::playerColor)),
-                                      *iter, SLOT(tokenIsEntering(int,playerColor)));
+                                      *iter, SLOT(tokenIsEntering(int,boardWidget::playerColor)));
         QObject::connect(this, SIGNAL(tokenLeaving_s(int,boardWidget::playerColor)),
-                         *iter, SLOT(tokenIsLeaving(int,playerColor)));
+                         *iter, SLOT(tokenIsLeaving(int,boardWidget::playerColor)));
     }
     // loop for all cities
     for(QVector<cityWidget*>::iterator iter = cities.begin(); iter != cities.end(); ++iter)
@@ -201,7 +200,7 @@ mainWidget::mainWidget(QWidget *parent) :
     QObject::connect(this, SIGNAL(deleteHouses_s(int)), *iter, SLOT(deleteAllHouses(int)));
     QObject::connect(this, SIGNAL(setMortgage_s(int,bool)), *iter, SLOT(setMortgageFlag(int,bool)));
     QObject::connect(this, SIGNAL(setOwnership_s(int,bool,boardWidget::playerColor)), *iter,
-                     SLOT(setOwnershipFlag(int,bool,playerColor)));
+                     SLOT(setOwnershipFlag(int,bool,boardWidget::playerColor)));
     }
 
     // loop for all railways
@@ -209,15 +208,15 @@ mainWidget::mainWidget(QWidget *parent) :
     {
         QObject::connect(this, SIGNAL(setMortgage_s(int,bool)), *iter, SLOT(setMortgageFlag(int,bool)));
         QObject::connect(this, SIGNAL(setOwnership_s(int,bool,boardWidget::playerColor)),
-                         *iter, SLOT(setOwnershipFlag(int,bool,playerColor)));
+                         *iter, SLOT(setOwnershipFlag(int,bool,boardWidget::playerColor)));
     }
+    // loop for all counters
     for(QVector<counterWidget*>::iterator iter = counters.begin(); iter != counters.end(); ++iter)
     {
         QObject::connect(this, SIGNAL(setMortgage_s(int,bool)), *iter, SLOT(setMortgageFlag(int,bool)));
         QObject::connect(this, SIGNAL(setOwnership_s(int,bool,boardWidget::playerColor)),
-                         *iter, SLOT(setOwnershipFlag(int,bool,playerColor)));
+                         *iter, SLOT(setOwnershipFlag(int,bool,boardWidget::playerColor)));
     }
-    // loop for all counters
 
     // adding layouts
     // list of layouts
@@ -231,13 +230,65 @@ mainWidget::mainWidget(QWidget *parent) :
     topLayout -> addWidget(chance1);
     topLayout ->addWidget(ateny);
     topLayout ->addWidget(parking);
-    topLayput ->addWidget(southRailway);
+    topLayout ->addWidget(southRailway);
     topLayout ->addWidget(neapol);
     topLayout ->addWidget(chance2);
     topLayout ->addWidget(mediolan);
     topLayout ->addWidget(rome);
     topLayout ->addWidget(prisonVisiting);
 
+    bottomLayout ->addWidget(prison);
+    bottomLayout ->addWidget(sztokholm);
+    bottomLayout ->addWidget(waterworks);
+    bottomLayout ->addWidget(goteborg);
+    bottomLayout ->addWidget(malmo);
+    bottomLayout ->addWidget(northRailway);
+    bottomLayout ->addWidget(amsterdam);
+    bottomLayout ->addWidget(brussel);
+    bottomLayout ->addWidget(chance4);
+    bottomLayout ->addWidget(rotterdam);
+    bottomLayout ->addWidget(freeParking);
+
+    leftLayout ->addWidget(vienna);
+    leftLayout ->addWidget(superTax);
+    leftLayout ->addWidget(insbruck);
+    leftLayout ->addWidget(chance6);
+    leftLayout ->addWidget(eastRailways);
+    leftLayout ->addWidget(bonn);
+    leftLayout ->addWidget(chance5);
+    leftLayout ->addWidget(kolonia);
+    leftLayout ->addWidget(frankfurt);
+
+    rightLayout ->addWidget(barcelona);
+    rightLayout ->addWidget(powerStation);
+    rightLayout ->addWidget(sewilla);
+    rightLayout ->addWidget(madryt);
+    rightLayout ->addWidget(westRailway);
+    rightLayout ->addWidget(liverpol);
+    rightLayout ->addWidget(chance3);
+    rightLayout ->addWidget(glasgow);
+    rightLayout ->addWidget(london);
+
+    centralWidget* center = new centralWidget;
+    bool res1 = QObject::connect(this, SIGNAL(cash_s(double)), center, SLOT(displayCash(double)));
+    bool res2 = QObject::connect(this, SIGNAL(round_s(int)), center, SLOT(displayRound(int)));
+    bool res3 = QObject::connect(this, SIGNAL(prisonCards_s(int)), center, SLOT(displayPrisonCards(int)));
+    bool res4 = QObject::connect(this, SIGNAL(sendMessage_s(QString)), center, SLOT(displayMessage(QString)));
+    bool res5 = QObject::connect(this, SIGNAL(wealth_s(double)), center, SLOT(displayWealth(double)));
+
+    Q_ASSERT(res1 && res2 && res3 && res4 && res5);
+    middleLayout ->addLayout(leftLayout);
+    middleLayout ->addStretch();
+    middleLayout ->addWidget(center);
+    middleLayout ->addStretch();
+    middleLayout ->addLayout(rightLayout);
+
+    QVBoxLayout* mainLayout = new QVBoxLayout;
+    mainLayout ->addLayout(topLayout);
+    mainLayout ->addLayout(middleLayout);
+    mainLayout ->addLayout(bottomLayout);
+
+    setLayout(mainLayout);
 }
 
 
@@ -253,6 +304,8 @@ void mainWidget::tokenIsEntering(int placeId, int playerId)
 
 void mainWidget::displayRound(int round)
 {
+    /*QString tmp;
+    tmp.number(round)*/
     emit round_s(round);
 }
 
@@ -263,16 +316,22 @@ void mainWidget::displayMessage(const QString& message)
 
 void mainWidget::displayWealth(double inp)
 {
+    //QString tmp;
+    //tmp.number(inp);
     emit wealth_s(inp);
 }
 
 void mainWidget::displayCash(double inp)
 {
+    //QString tmp;
+    //tmp.number(inp);
     emit cash_s(inp);
 }
 
 void mainWidget::displayPrisonCards(int inp)
 {
+    //QString tmp;
+    //tmp.number(inp);
     emit prisonCards_s(inp);
 }
 

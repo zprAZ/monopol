@@ -24,18 +24,22 @@ void cityWidget::paintItself(QPainter& inp)
         inp.setBrush(QBrush(Qt::NoBrush));
         if(ownerPresent_m) inp.setBrush(QBrush(playerColor2QColor(frameColor_m), Qt::Dense5Pattern));
         if(mortgage_m) inp.setBrush(QBrush(Qt::gray, Qt::Dense5Pattern));
-        inp.drawRect(0, 0, w_width, w_height); // outer rectangle
+        inp.drawRect(0,0, w_width, w_height); // outer rectangle
         inp.setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
-        inp.drawRect(frameWidth_m, frameWidth_m, w_width-frameWidth_m,
-                    w_height - frameWidth_m);
+        inp.drawRect(frameWidth_m, frameWidth_m, w_width- 2*frameWidth_m,
+                    w_height - 2*frameWidth_m);
         // now let's draw city color and name
         inp.setBrush(QBrush(cityColor_m, Qt::SolidPattern));
         QRect nameRectangle(frameWidth_m, frameWidth_m, w_width - 2* frameWidth_m,
-                            30); // height is arbitrary
+                            static_cast<int>(drawParams::NAME_RECT_HEIGHT));
         inp.drawRect(nameRectangle);
         inp.drawText(nameRectangle, name_m, QTextOption(Qt::AlignHCenter));
         // now let's draw houses and hotels
-        inp.drawLine(QPoint(frameWidth_m,110),QPoint(w_width-frameWidth_m, 110));
+        inp.drawLine(QPoint(frameWidth_m , static_cast<int>(windowSize::RECTANGLE_HEIGHT)/5*3),
+                     QPoint(w_width-frameWidth_m, static_cast<int>(windowSize::RECTANGLE_HEIGHT)/5*3));
+
+        int width_ = static_cast<int>(windowSize::RECTANGLE_WIDTH);
+        int height_ = static_cast<int>(windowSize::RECTANGLE_HEIGHT);
         if(!hotel_m)
         {
             inp.setBrush(QBrush(Qt::red, Qt::Dense3Pattern));
@@ -46,24 +50,26 @@ void cityWidget::paintItself(QPainter& inp)
                 switch(i)
                 {
                 case 0:
-                    inp.drawRect(15, 45, houseParams.first,
+                    inp.drawRect(15.0/100.0*width_, 45.0/200.0*height_, houseParams.first,
                                  houseParams.second);
                     break;
                 case 1:
-                    inp.drawRect(55, 45, houseParams.first, houseParams.second);
+                    inp.drawRect(55.0/100.0*width_, 45.0/200.0*height_, houseParams.first, houseParams.second);
                     break;
                 case 2:
-                    inp.drawRect(15, 75, houseParams.first, houseParams.second);
+                    inp.drawRect(15.0/100.0*width_, 75.0/200.0*height_, houseParams.first, houseParams.second);
                     break;
                 case 3:
-                    inp.drawRect(55, 75, houseParams.first, houseParams.second);
+                    inp.drawRect(55.0/100.0*width_, 75.0/200.0*height_, houseParams.first, houseParams.second);
                     break;
             }
             }
         }else
         {
             inp.setBrush(QBrush(Qt::yellow, Qt::Dense1Pattern));
-            inp.drawRect(15,45, static_cast<int>(drawParams::HOTEL_WIDTH),
+            inp.drawRect(static_cast<int>(width_/2.0 - static_cast<double>(drawParams::HOTEL_WIDTH)/2),
+                         static_cast<int>(50.0/200.0*height_),
+                         static_cast<int>(drawParams::HOTEL_WIDTH),
                          static_cast<int>(drawParams::HOTEL_HEIGHT));
         }
     inp.restore();
