@@ -8,7 +8,12 @@ HEADERS += \
     taxWidget.h \
     centralWidget.h \
     mainWidget.h \
-    mainWindow.h
+    mainWindow.h \
+    ip4Validator.h \
+    questionDialog.h \
+    ipsettingsDialog.h \
+    infoDialog.h \
+    ServerConnector.h
 
 SOURCES += \
     boardWidget.cpp \
@@ -21,6 +26,13 @@ SOURCES += \
     centralWidget.cpp \
     mainWidget.cpp \
     main.cpp \
-    mainWindow.cpp
+    mainWindow.cpp \
+    ip4Validator.cpp \
+    questionDialog.cpp \
+    ipsettingsDialog.cpp \
+    infoDialog.cpp \
+    ServerConnector.cpp
+
+QT += network
 
 QMAKE_CXXFLAGS += -std=c++11

@@ -22,26 +22,46 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      12,   11,   11,   11, 0x08,
+      30,   11,   11,   11, 0x08,
+      53,   11,   11,   11, 0x08,
+      73,   11,   11,   11, 0x08,
+      81,   11,   11,   11, 0x08,
+     106,  100,   11,   11, 0x08,
+
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0"
+    "MainWindow\0\0connectToServer()\0"
+    "disconnectFromServer()\0setServerSettings()\0"
+    "about()\0closeApplication()\0error\0"
+    "displayErrorMessage(QString)\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
-    Q_UNUSED(_a);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        Q_ASSERT(staticMetaObject.cast(_o));
+        MainWindow *_t = static_cast<MainWindow *>(_o);
+        switch (_id) {
+        case 0: _t->connectToServer(); break;
+        case 1: _t->disconnectFromServer(); break;
+        case 2: _t->setServerSettings(); break;
+        case 3: _t->about(); break;
+        case 4: _t->closeApplication(); break;
+        case 5: _t->displayErrorMessage((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        default: ;
+        }
+    }
 }
 
 const QMetaObjectExtraData MainWindow::staticMetaObjectExtraData = {
@@ -75,6 +95,11 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QMainWindow::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 6)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 6;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE
