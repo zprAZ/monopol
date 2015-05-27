@@ -22,7 +22,7 @@ static const uint qt_meta_data_mainWidget[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      25,   14, // methods
+      27,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -57,6 +57,8 @@ static const uint qt_meta_data_mainWidget[] = {
      598,  221,   11,   11, 0x0a,
      637,  616,   11,   11, 0x0a,
      668,  221,   11,   11, 0x0a,
+     694,   11,   11,   11, 0x08,
+     752,  743,  718,   11, 0x08,
 
        0        // eod
 };
@@ -81,6 +83,9 @@ static const char qt_meta_stringdata_mainWidget[] = {
     "id,flag,playerNumber\0"
     "setOwnershipFlag(int,bool,int)\0"
     "setMortgageFlag(int,bool)\0"
+    "handleDiceFromCentral()\0"
+    "boardWidget::playerColor\0playerId\0"
+    "playerId2color(int)\0"
 };
 
 void mainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -114,6 +119,9 @@ void mainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 22: _t->doHotel((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         case 23: _t->setOwnershipFlag((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
         case 24: _t->setMortgageFlag((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 25: _t->handleDiceFromCentral(); break;
+        case 26: { boardWidget::playerColor _r = _t->playerId2color((*reinterpret_cast< int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< boardWidget::playerColor*>(_a[0]) = _r; }  break;
         default: ;
         }
     }
@@ -151,9 +159,9 @@ int mainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 27;
     }
     return _id;
 }

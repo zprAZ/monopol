@@ -45,7 +45,8 @@ public slots:
     void doHotel(int id, bool inp);
     void setOwnershipFlag(int id, bool flag,int  playerNumber);
     void setMortgageFlag(int id, bool inp);
-private:
+private slots:
+    void handleDiceFromCentral();
     boardWidget::playerColor playerId2color(int playerId);
 
 };

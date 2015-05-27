@@ -22,7 +22,7 @@ static const uint qt_meta_data_ServerConnector[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -49,13 +49,14 @@ static const uint qt_meta_data_ServerConnector[] = {
  // slots: signature, parameters, type, tag, flags
      536,  519,   16,   16, 0x0a,
      567,  559,   16,   16, 0x0a,
-     600,  559,   16,   16, 0x0a,
-     628,   16,   16,   16, 0x0a,
-     646,   16,   16,   16, 0x0a,
-     666,   16,   16,   16, 0x08,
-     699,  693,   16,   16, 0x08,
-     735,   16,   16,   16, 0x08,
-     766,   16,   16,   16, 0x08,
+     600,   16,   16,   16, 0x0a,
+     622,  559,   16,   16, 0x0a,
+     650,   16,   16,   16, 0x0a,
+     668,   16,   16,   16, 0x0a,
+     688,   16,   16,   16, 0x08,
+     721,  715,   16,   16, 0x08,
+     757,   16,   16,   16, 0x08,
+     788,   16,   16,   16, 0x08,
 
        0        // eod
 };
@@ -78,7 +79,7 @@ static const char qt_meta_stringdata_ServerConnector[] = {
     "setMortgageFlagSignal(int,bool)\0"
     "messageId,answer\0sendResponse(int,bool)\0"
     "ip,port\0establishConnection(QString,int)\0"
-    "setTcpSettings(QString,int)\0"
+    "establishConnection()\0setTcpSettings(QString,int)\0"
     "closeConnection()\0handleDiceRequest()\0"
     "connectionClosedByServer()\0error\0"
     "error(QAbstractSocket::SocketError)\0"
@@ -109,13 +110,14 @@ void ServerConnector::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 14: _t->setMortgageFlagSignal((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         case 15: _t->sendResponse((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         case 16: _t->establishConnection((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 17: _t->setTcpSettings((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 18: _t->closeConnection(); break;
-        case 19: _t->handleDiceRequest(); break;
-        case 20: _t->connectionClosedByServer(); break;
-        case 21: _t->error((*reinterpret_cast< QAbstractSocket::SocketError(*)>(_a[1]))); break;
-        case 22: _t->connectionHasBeenEstablished(); break;
-        case 23: _t->readDataFromSocket(); break;
+        case 17: _t->establishConnection(); break;
+        case 18: _t->setTcpSettings((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 19: _t->closeConnection(); break;
+        case 20: _t->handleDiceRequest(); break;
+        case 21: _t->connectionClosedByServer(); break;
+        case 22: _t->error((*reinterpret_cast< QAbstractSocket::SocketError(*)>(_a[1]))); break;
+        case 23: _t->connectionHasBeenEstablished(); break;
+        case 24: _t->readDataFromSocket(); break;
         default: ;
         }
     }
@@ -153,9 +155,9 @@ int ServerConnector::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 25;
     }
     return _id;
 }

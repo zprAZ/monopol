@@ -275,8 +275,8 @@ mainWidget::mainWidget(QWidget *parent) :
     bool res3 = QObject::connect(this, SIGNAL(prisonCards_s(int)), center, SLOT(displayPrisonCards(int)));
     bool res4 = QObject::connect(this, SIGNAL(sendMessage_s(QString)), center, SLOT(displayMessage(QString)));
     bool res5 = QObject::connect(this, SIGNAL(wealth_s(double)), center, SLOT(displayWealth(double)));
-
-    Q_ASSERT(res1 && res2 && res3 && res4 && res5);
+    bool res6 = QObject::connect(center, SIGNAL(dice_s()), this, SLOT(handleDiceFromCentral()));
+    Q_ASSERT(res1 && res2 && res3 && res4 && res5 && res6);
     middleLayout ->addLayout(leftLayout);
     middleLayout ->addStretch();
     middleLayout ->addWidget(center);
@@ -380,4 +380,9 @@ boardWidget::playerColor mainWidget::playerId2color(int playerId)
         return boardWidget::playerColor::NO_COLOR;
         break;
     }
+}
+
+void mainWidget::handleDiceFromCentral()
+{
+    emit dice_s();
 }

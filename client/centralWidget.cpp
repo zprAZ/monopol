@@ -118,5 +118,5 @@ void centralWidget::displayPrisonCards(int inp)
 
 void centralWidget::handleDice()
 {
-    emit dice();
+    emit dice_s();
 }

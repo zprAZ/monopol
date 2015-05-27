@@ -31,27 +31,27 @@ static const uint qt_meta_data_centralWidget[] = {
 
  // signals: signature, parameters, type, tag, flags
       20,   15,   14,   14, 0x05,
-      32,   14,   14,   14, 0x05,
-      39,   14,   14,   14, 0x05,
-      56,   14,   14,   14, 0x05,
-      75,   14,   14,   14, 0x05,
-      93,   14,   14,   14, 0x05,
-     109,   14,   14,   14, 0x05,
+      34,   14,   14,   14, 0x05,
+      43,   14,   14,   14, 0x05,
+      60,   14,   14,   14, 0x05,
+      79,   14,   14,   14, 0x05,
+      97,   14,   14,   14, 0x05,
+     113,   14,   14,   14, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     138,  132,   14,   14, 0x0a,
-     164,  156,   14,   14, 0x0a,
-     192,  188,   14,   14, 0x0a,
-     214,  188,   14,   14, 0x0a,
-     234,  188,   14,   14, 0x0a,
-     258,   14,   14,   14, 0x08,
+     142,  136,   14,   14, 0x0a,
+     168,  160,   14,   14, 0x0a,
+     196,  192,   14,   14, 0x0a,
+     218,  192,   14,   14, 0x0a,
+     238,  192,   14,   14, 0x0a,
+     262,   14,   14,   14, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_centralWidget[] = {
-    "centralWidget\0\0flag\0pause(bool)\0dice()\0"
-    "round_s(QString)\0message_s(QString)\0"
+    "centralWidget\0\0flag\0pause_s(bool)\0"
+    "dice_s()\0round_s(QString)\0message_s(QString)\0"
     "wealth_s(QString)\0cash_s(QString)\0"
     "prisonCards_s(QString)\0round\0"
     "displayRound(int)\0message\0"
@@ -66,8 +66,8 @@ void centralWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         Q_ASSERT(staticMetaObject.cast(_o));
         centralWidget *_t = static_cast<centralWidget *>(_o);
         switch (_id) {
-        case 0: _t->pause((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 1: _t->dice(); break;
+        case 0: _t->pause_s((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 1: _t->dice_s(); break;
         case 2: _t->round_s((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 3: _t->message_s((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 4: _t->wealth_s((*reinterpret_cast< QString(*)>(_a[1]))); break;
@@ -124,14 +124,14 @@ int centralWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void centralWidget::pause(bool _t1)
+void centralWidget::pause_s(bool _t1)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void centralWidget::dice()
+void centralWidget::dice_s()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, 0);
 }

@@ -31,6 +31,7 @@ signals:
 public slots:
     void sendResponse(int messageId, bool answer); // for question dialog signal
     void establishConnection(const QString& ip, int port);
+    void establishConnection();
     void setTcpSettings(const QString& ip, int port);
     void closeConnection();
     void handleDiceRequest();

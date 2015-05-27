@@ -15,8 +15,8 @@ public:
     enum class settings:int {MESSAGE_HISTORY = 100};
 
 signals:
-    void pause(bool flag);
-    void dice();
+    void pause_s(bool flag);
+    void dice_s();
     void round_s(QString);
     void message_s(QString);
     void wealth_s(QString);

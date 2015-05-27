@@ -46,28 +46,21 @@ MainWindow::MainWindow(QWidget *parent) :
     bool c14 = connect(tcpClient, SIGNAL(askQuestionSignal(int,QString)), askQuestion, SLOT(setQuestion(int,QString)));
     bool c15 = connect(tcpClient, SIGNAL(showInfoSignal(QString)), showInfo, SLOT(showInfo(QString)));
     bool c16 = connect(askQuestion, SIGNAL(responseSignal(int,bool)), tcpClient, SLOT(sendResponse(int,bool)));
+    bool c17 = connect(window, SIGNAL(dice_s()), tcpClient, SLOT(handleDiceRequest()));
     Q_ASSERT(c1 && c2 && c3 && c4 && c5 && c6 && c7 && c8 && c9 && c10
-             && c11 && c12 && c13 && c14 && c15 && c16);
+             && c11 && c12 && c13 && c14 && c15 && c16 && c17);
 
 // debuging and testing
+    /*
     for(int i = 0; i< 39; ++i)
     {
         window ->tokenIsEntering(i,1);
-        /*window ->tokenIsEntering(i,2);
-        window ->tokenIsEntering(i,3);
-        window ->tokenIsEntering(i,4);
-    */
     }
     window->displayRound(100);
     window ->displayCash(123);
     window ->displayPrisonCards(1);
     window ->displayWealth(23456778.658768);
- /*   for(int i = 0; i< 39; ++i)
-    {
-        window ->doHotel(i,true);
 
-    }
-*/
     QString tmp;
     for(int i = 0; i< 39; ++i)
        {
@@ -81,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
     window->setOwnershipFlag(1,true,1);
     window->setOwnershipFlag(11,true,2);
     window->setOwnershipFlag(23,true,3);
+    */
 }
 
 void MainWindow::createActions()

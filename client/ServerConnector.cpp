@@ -17,12 +17,19 @@ ServerConnector::ServerConnector(QObject *parent) :
 
 void ServerConnector::sendResponse(int messageId, bool answer) // for question dialog signal
 {
-    if(connectionOK)
+    if(connectionOK = tcpSocket.isValid())
     {
-
+        QByteArray block;
+        QDataStream out(&block, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_4_8);
+        out << quint16(0) << quint8('b') << quint8(static_cast<int>(answer));
+        out.device() ->seek(0);
+        out << quint16(block.size() - sizeof(quint16));
+        tcpSocket.write(block);
     }else
     {
         // ZCU_TODO
+        emit errorSignal(QString(tr("Connection is not valid")));
     }
 }
 
@@ -30,6 +37,11 @@ void ServerConnector::establishConnection(const QString& ip, int port)
 {
     ipAddress = ip;
     portNumber = port;
+    tcpSocket.connectToHost(QHostAddress(ipAddress), portNumber);
+}
+
+void ServerConnector::establishConnection()
+{
     tcpSocket.connectToHost(QHostAddress(ipAddress), portNumber);
 }
 
@@ -46,12 +58,21 @@ void ServerConnector::closeConnection()
 
 void ServerConnector::handleDiceRequest()
 {
-
+    if(connectionOK = tcpSocket.isValid())
+    {
+        QByteArray block;
+        QDataStream out(&block, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_4_8);
+        out << quint16(0) << quint8('a');
+        out.device() ->seek(0);
+        out << quint16(block.size() - sizeof(quint16));
+        tcpSocket.write(block);
+    }
 }
 
 void ServerConnector::connectionClosedByServer()
 {
-
+    emit errorSignal(QString(tr("Connection closed by server! sorry")));
 }
 
 void ServerConnector::error(QAbstractSocket::SocketError error)
@@ -125,32 +146,32 @@ void ServerConnector::readDataFromSocket()
         // now we can read message
         quint8 messageType;
         in >> messageType;
-        qint64 messageId;
+        quint64 messageId;
         in >>messageId;
         switch(messageType)
         {
-        case 1: // info message
+        case 'c': // info message
             {
                 QString text;
                 in >>text;
-                emit displayMessageSignal(text);
+                emit showInfoSignal(text);
                 break;
             }
-        case 2: // question message
+        case 'd': // question message
             {
                 QString text;
                 in>>text;
                 emit askQuestionSignal(messageId, text);
                 break;
             }
-        case 3: // round message
+        case 'e': // round message
             {
                 quint32 roundNumber;
                 in >> roundNumber;
                 emit displayRoundSignal(roundNumber);
                 break;
             }
-        case 4: // token is leaving
+        case 'f': // token is leaving
             {
                 quint32 placeId;
                 quint32 playerId;
@@ -158,7 +179,7 @@ void ServerConnector::readDataFromSocket()
                 emit tokenIsLeavingSignal(placeId, playerId);
                 break;
             }
-        case 5: // token is entering
+        case 'g': // token is entering
             {
                 quint32 placeId;
                 quint32 playerId;
@@ -166,7 +187,7 @@ void ServerConnector::readDataFromSocket()
                 emit tokenIsEnteringSignal(placeId, playerId);
                 break;
             }
-        case 6: // mortgage flag
+        case 'h': // mortgage flag
             {
                 quint32 placeId;
                 quint8 boolFlag;
@@ -175,7 +196,7 @@ void ServerConnector::readDataFromSocket()
                 emit setMortgageFlagSignal(placeId, static_cast<bool>(boolFlag));
                 break;
             }
-        case 7: // ownership flag
+        case 'i': // ownership flag
             {
                 quint32 placeId;
                 quint8 boolFlag;
@@ -184,7 +205,7 @@ void ServerConnector::readDataFromSocket()
                 emit setOwnershipFlagSignal(placeId, boolFlag, playerId);
                 break;
             }
-        case 8: // do hotal
+        case 'j': // do hotal
             {
                 quint32 placeId;
                 quint8 boolFlag;
@@ -192,7 +213,7 @@ void ServerConnector::readDataFromSocket()
                 emit doHotelSignal(placeId,boolFlag);
                 break;
             }
-        case 9: // do house
+        case 'k': // do house
             {
                 quint32 placeId;
                 quint8 boolFlag;
@@ -200,39 +221,45 @@ void ServerConnector::readDataFromSocket()
                 emit doHouseSignal(placeId, boolFlag);
                 break;
             }
-        case 10: // delete all houses
+        case 'm': // delete all houses
             {
                 quint32 placeId;
                 in >> placeId;
                 emit deleteAllHousesSignal(placeId);
                 break;
             }
-        case 11: // display prison cards
+        case 'n': // display prison cards
             {
                 quint32 prisonCardsNumber;
                 in >> prisonCardsNumber;
                 emit displayPrisonCardsSignal(prisonCardsNumber);
                 break;
             }
-        case 12: // display cash
+        case 'o': // display cash
             {
                 qreal value;
                 in >> value;
                 emit displayCashSignal(value);
                 break;
             }
-        case 13: // display wealth
+        case 'p': // display wealth
             {
                 qreal value;
                 in >> value;
                 emit displayWealthSignal(value);
                 break;
             }
-        case 14: //
+        case 'r': // show message to all players
+            {
+                QString text;
+                in >>text;
+                emit displayMessageSignal(text);
+                break;
+            }
         default:
             emit errorSignal(QString("unrecognized message type"));
             break;
         }
-
-    }
+        nextBlockSize = 0;
+    } // forever
 }
