@@ -2,12 +2,16 @@
 #define CLIENTSOCKET_H
 
 #include <QTcpSocket>
+#include <QSharedPointer>
+#include <QPointer> // guard pointer
 
 class ClientSocket : public QObject
 {
     Q_OBJECT
 public:
-    explicit ClientSocket(QTcpSocket* socket, QObject *parent = 0 );
+    explicit ClientSocket(const int& id, QTcpSocket* socket,
+                    void (*inp)(const int&),
+                          QObject *parent = 0 );
     bool sendQuestionMessage(const QString& text);
 signals:
     void diceSignal();
@@ -27,13 +31,18 @@ public slots:
     void sendCashMessage(const double& inp);
     void showMessage(const QString& inp);
 
+private slots:
     void readClient();
+    void mySocketDosconnected();
 
 private:
     static quint64 messageId;
     quint16 nextBlockSize = 0;
     bool lastResponseValue;
-    QTcpSocket* socket;
+    QPointer<QTcpSocket> socket;
+    QVector<QPointer<ClientSocket>> allSockets;
+    const int socketId;
+    void (*deletePlayerFunction)(const int&);
 };
 
 

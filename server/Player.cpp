@@ -1,7 +1,7 @@
 #include "Player.h"
 
-Player::Player(ClientSocket *socketInp, QObject *parent) :
-    QObject(parent)
+Player::Player(const int &id, QPointer<ClientSocket> socketInp, QObject *parent) :
+    QObject(parent), playerId(id)
 {
     this->socket = socketInp;
     connect(socket, SIGNAL(diceSignal()), this, SLOT(handleDiceTest()));
@@ -10,6 +10,7 @@ Player::Player(ClientSocket *socketInp, QObject *parent) :
 void Player::testCommunication()
 {
     socket->sendHotelMessage(6,true);
+    socket->sendHotelMessage(6,false);
     socket->sendInfoMessage(QString("this is first info message"));
     socket->sendMortgageFlagStatus(9, true);
     socket->sendCashMessage(126.5765);
@@ -46,4 +47,14 @@ void Player::testCommunication()
 void Player::handleDiceTest()
 {
     socket->sendInfoMessage(QString("DICE"));
+}
+
+QPointer<ClientSocket> Player::getSocketPointer()
+{
+    return socket;
+}
+
+int Player::getPlayerId()const
+{
+    return playerId;
 }

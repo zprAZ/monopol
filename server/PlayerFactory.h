@@ -5,10 +5,10 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QVector>
+#include <QPointer>
+#include <map>
 
 #include "Player.h"
-
-class ClientSocket;
 
 class PlayerFactory : public QObject
 {
@@ -25,8 +25,13 @@ public slots:
     void test();
 
 private:
+    static void deleteDisconnectedPlayer(const int& id);
     QTcpServer* server;
     QVector<Player*> players;
+    std::map<int, bool> idAssignment;
+    std::map<int, ClientSocket*> allSockets;
+
+    friend class ClientSocket;
 };
 
 #endif // PLAYERFACTORY_H

@@ -4,14 +4,16 @@
 
 quint64 ClientSocket::messageId = 0;
 
-ClientSocket::ClientSocket(QTcpSocket *socket , QObject* parent):
-    QObject(parent)
+ClientSocket::ClientSocket(const int& id, QTcpSocket *socket,
+                           void (*inp)(const int &), QObject* parent):
+    QObject(parent), socketId(id)
 {
+    deletePlayerFunction = inp;
     this->socket = socket;
     lastResponseValue = false;
     bool result1 = connect(this->socket, SIGNAL(readyRead()), this, SLOT(readClient()));
     bool result2 = connect(this->socket, SIGNAL(disconnected()),
-                           this->socket, SLOT(deleteLater()));
+                           this, SLOT(mySocketDosconnected()));
     Q_ASSERT(result1 && result2);
 }
 void ClientSocket::sendInfoMessage(const QString& inp)
@@ -237,7 +239,7 @@ void ClientSocket::readClient()
     }
     if(type == 'b')
     {
-        quint16 result;
+        quint8 result;
         in >> result;
         lastResponseValue = static_cast<bool>(result);
         emit questionResponseSignal();
@@ -245,3 +247,8 @@ void ClientSocket::readClient()
     nextBlockSize = 0;
 }
 
+void ClientSocket::mySocketDosconnected()
+{
+    deletePlayerFunction(socketId);
+    socket ->deleteLater();
+}

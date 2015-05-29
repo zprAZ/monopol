@@ -22,7 +22,7 @@ static const uint qt_meta_data_ClientSocket[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -47,7 +47,8 @@ static const uint qt_meta_data_ClientSocket[] = {
      446,   52,   13,   13, 0x0a,
      472,   52,   13,   13, 0x0a,
      496,   52,   13,   13, 0x0a,
-     517,   13,   13,   13, 0x0a,
+     517,   13,   13,   13, 0x08,
+     530,   13,   13,   13, 0x08,
 
        0        // eod
 };
@@ -68,7 +69,7 @@ static const char qt_meta_stringdata_ClientSocket[] = {
     "sendPrisonCardsInformation(int)\0"
     "sendWealthMessage(double)\0"
     "sendCashMessage(double)\0showMessage(QString)\0"
-    "readClient()\0"
+    "readClient()\0mySocketDosconnected()\0"
 };
 
 void ClientSocket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -93,6 +94,7 @@ void ClientSocket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 13: _t->sendCashMessage((*reinterpret_cast< const double(*)>(_a[1]))); break;
         case 14: _t->showMessage((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 15: _t->readClient(); break;
+        case 16: _t->mySocketDosconnected(); break;
         default: ;
         }
     }
@@ -130,9 +132,9 @@ int ClientSocket::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }
