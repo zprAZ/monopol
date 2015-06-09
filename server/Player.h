@@ -15,6 +15,8 @@ public:
     void testCommunication();
     QPointer<ClientSocket> getSocketPointer();
     int getPlayerId()const;
+    void sendMessageToAll(const QString& inp);
+    void sendMessageToThisPlayer(const QString& inp);
 signals:
 
 public slots:

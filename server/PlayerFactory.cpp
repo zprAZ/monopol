@@ -98,3 +98,15 @@ void PlayerFactory::deleteDisconnectedPlayer(const int &id)
                                arg(tmpId));
     });
 }
+
+void PlayerFactory::sendMessageToAllSockets(const QString& inp)
+{
+    std::for_each(allSockets.begin(), allSockets.end(),
+                  [&inp](std::pair<int, ClientSocket*> a)
+    {
+        a.second->sendInfoMessage(inp);
+    });
+}
+
+
+

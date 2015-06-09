@@ -59,3 +59,13 @@ int Player::getPlayerId()const
 {
     return playerId;
 }
+
+void Player::sendMessageToAll(const QString& inp)
+{
+    this->socket->sendToAll(inp);
+}
+
+void Player::sendMessageToThisPlayer(const QString& inp)
+{
+    this->socket->sendInfoMessage(inp);
+}

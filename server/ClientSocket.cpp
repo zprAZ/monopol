@@ -253,6 +253,13 @@ void ClientSocket::mySocketDosconnected()
     socket ->deleteLater();
 }
 
+void ClientSocket::sendToAll(const QString& text)
+{
+    QObject* myFactory = this->parent();
+    bool callResult = QMetaObject::invokeMethod(myFactory,"sendMessageToAllSockets",
+                                                Q_ARG(QString,text));
+}
+
 int ClientSocket::getSocketId() const
 {
     return socketId;

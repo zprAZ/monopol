@@ -12,6 +12,7 @@ public:
     explicit ClientSocket(const int& id, QTcpSocket* socket,
                           QObject *parent = 0 );
     bool sendQuestionMessage(const QString& text);
+    void sendToAll(const QString& text);
     int getSocketId() const;
 signals:
     void diceSignal();
@@ -40,7 +41,6 @@ private:
     quint16 nextBlockSize = 0;
     bool lastResponseValue;
     QPointer<QTcpSocket> socket;
-    QVector<QPointer<ClientSocket>> allSockets;
     const int socketId;
 };
 

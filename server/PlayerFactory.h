@@ -25,7 +25,7 @@ public slots:
     void createPlayer();
     void test();
     void deleteDisconnectedPlayer(const int& id);
-
+    void sendMessageToAllSockets(const QString& inp);
 private:
 
     QTcpServer* server;

@@ -1,4 +1,5 @@
 #include "Pawn.h"
+#include "visitors/Visitor.h"
 
 Pawn::Pawn(QObject *parent) :
     QObject(parent)
@@ -21,4 +22,9 @@ bool Pawn::ifIsValid() const
 void Pawn::invalidate()
 {
     this->implementInvalidation();
+}
+
+void Pawn::accept(Visitor& visitor)
+{
+    visitor.visit(*this);
 }

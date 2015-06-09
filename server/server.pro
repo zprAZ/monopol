@@ -19,7 +19,10 @@ HEADERS += \
     places/CityPlace.h \
     places/CornerPlace.h \
     places/CounterPlace.h \
-    places/RailwayPlace.h
+    places/RailwayPlace.h \
+    visitors/VisitorFactory.h \
+    visitors/GoVisitor.h \
+    visitors/CollectVisitor.h
 
 SOURCES += \
     ClientSocket.cpp \
@@ -38,7 +41,10 @@ SOURCES += \
     places/CityPlace.cpp \
     places/CornerPlace.cpp \
     places/CounterPlace.cpp \
-    places/RailwayPlace.cpp
+    places/RailwayPlace.cpp \
+    visitors/VisitorFactory.cpp \
+    visitors/GoVisitor.cpp \
+    visitors/CollectVisitor.cpp
 
 
 

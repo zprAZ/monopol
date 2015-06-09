@@ -1,4 +1,4 @@
 <configuration>
 	<chances filename="/home/Zbigniew/fifth_semester/ZPR/project/monopol/skeleton/data/chances.xml" /chances>
-	<places filename="/home/Zbigniew/fifth_semester/ZPR/project/monopol/skeleton/data/chances.xml" /places>
+	<places filename="/home/Zbigniew/fifth_semester/ZPR/project/monopol/skeleton/data/places.xml" /places>
 </configuration>
