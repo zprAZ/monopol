@@ -1,5 +1,5 @@
 #include "CityPlace.h"
 
-CityPlace::CityPlace()
+CityPlace::CityPlace(const int &inp):BoardPlace(inp)
 {
 }

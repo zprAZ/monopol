@@ -1,5 +1,5 @@
 #include "RailwayPlace.h"
 
-RailwayPlace::RailwayPlace()
+RailwayPlace::RailwayPlace(const int &inp):BoardPlace(inp)
 {
 }

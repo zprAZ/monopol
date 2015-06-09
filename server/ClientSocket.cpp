@@ -4,11 +4,9 @@
 
 quint64 ClientSocket::messageId = 0;
 
-ClientSocket::ClientSocket(const int& id, QTcpSocket *socket,
-                           void (*inp)(const int &), QObject* parent):
+ClientSocket::ClientSocket(const int& id, QTcpSocket *socket, QObject* parent):
     QObject(parent), socketId(id)
 {
-    deletePlayerFunction = inp;
     this->socket = socket;
     lastResponseValue = false;
     bool result1 = connect(this->socket, SIGNAL(readyRead()), this, SLOT(readClient()));
@@ -249,6 +247,13 @@ void ClientSocket::readClient()
 
 void ClientSocket::mySocketDosconnected()
 {
-    deletePlayerFunction(socketId);
+    QObject* myFactory = this->parent();
+    bool callResult = QMetaObject::invokeMethod(myFactory,"deleteDisconnectedPlayer",
+                      Q_ARG(int,socketId));
     socket ->deleteLater();
+}
+
+int ClientSocket::getSocketId() const
+{
+    return socketId;
 }

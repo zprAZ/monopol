@@ -1,5 +1,5 @@
 #include "CornerPlace.h"
 
-CornerPlace::CornerPlace()
+CornerPlace::CornerPlace(const int &inp):BoardPlace(inp)
 {
 }

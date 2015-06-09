@@ -8,7 +8,8 @@
 #include <QPointer>
 #include <map>
 
-#include "Player.h"
+class Player;
+class ClientSocket;
 
 class PlayerFactory : public QObject
 {
@@ -23,9 +24,10 @@ public slots:
 
     void createPlayer();
     void test();
+    void deleteDisconnectedPlayer(const int& id);
 
 private:
-    static void deleteDisconnectedPlayer(const int& id);
+
     QTcpServer* server;
     QVector<Player*> players;
     std::map<int, bool> idAssignment;

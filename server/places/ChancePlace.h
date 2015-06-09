@@ -2,6 +2,8 @@
 #define CHANCEPLACE_H
 
 #include <memory>
+#include "BoardPlace.h"
+#include ""
 
 class ChancePlace : public BoardPlace
 {

@@ -22,7 +22,7 @@ static const uint qt_meta_data_PlayerFactory[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,13 +35,15 @@ static const uint qt_meta_data_PlayerFactory[] = {
  // slots: signature, parameters, type, tag, flags
       29,   14,   14,   14, 0x0a,
       44,   14,   14,   14, 0x0a,
+      54,   51,   14,   14, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_PlayerFactory[] = {
     "PlayerFactory\0\0playerReady()\0"
-    "createPlayer()\0test()\0"
+    "createPlayer()\0test()\0id\0"
+    "deleteDisconnectedPlayer(int)\0"
 };
 
 void PlayerFactory::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -53,10 +55,10 @@ void PlayerFactory::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->playerReady(); break;
         case 1: _t->createPlayer(); break;
         case 2: _t->test(); break;
+        case 3: _t->deleteDisconnectedPlayer((*reinterpret_cast< const int(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData PlayerFactory::staticMetaObjectExtraData = {
@@ -91,9 +93,9 @@ int PlayerFactory::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

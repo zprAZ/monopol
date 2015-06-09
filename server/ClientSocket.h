@@ -10,9 +10,9 @@ class ClientSocket : public QObject
     Q_OBJECT
 public:
     explicit ClientSocket(const int& id, QTcpSocket* socket,
-                    void (*inp)(const int&),
                           QObject *parent = 0 );
     bool sendQuestionMessage(const QString& text);
+    int getSocketId() const;
 signals:
     void diceSignal();
     void questionResponseSignal();
@@ -42,7 +42,6 @@ private:
     QPointer<QTcpSocket> socket;
     QVector<QPointer<ClientSocket>> allSockets;
     const int socketId;
-    void (*deletePlayerFunction)(const int&);
 };
 
 

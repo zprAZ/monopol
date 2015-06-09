@@ -1,5 +1,5 @@
 #include "CounterPlace.h"
 
-CounterPlace::CounterPlace()
+CounterPlace::CounterPlace(const int &inp):BoardPlace(inp)
 {
 }
