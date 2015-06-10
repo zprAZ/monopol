@@ -1,4 +1,6 @@
 #include "CollectVisitor.h"
+#include "Pawn.h"
+#include "Player.h"
 #include <memory>
 
 CollectVisitor::CollectVisitor() : message(QString("")), amount(0)
@@ -34,5 +36,5 @@ void CollectVisitor::visit(Pawn& inp)
 void CollectVisitor::visit(Player& inp)
 {
     inp.sendMessageToThisPlayer(this->message);
-    // ZCU_TODO increase player money
+    inp.collectMoney(this->amount);
 }

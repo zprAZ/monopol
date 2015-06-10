@@ -1,16 +1,18 @@
-#ifndef COLLECTVISITOR_H
-#define COLLECTVISITOR_H
-
+#ifndef PAYVISITOR_H
+#define PAYVISITOR_H
 
 #include "PlayerVisitor.h"
 #include <memory>
 #include <QString>
 
-class CollectVisitor : public PlayerVisitor
+class Player;
+class Pawn;
+
+class PayVisitor : public PlayerVisitor
 {
 public:
-    CollectVisitor();
-    static std::unique_ptr<Visitor>  createCollectVisitor();
+    PayVisitor();
+    static std::unique_ptr<Visitor>  createPayVisitor();
     void init(double amount, const QString& message);
     void setMessage(const QString& message);
     void setAmount(const double& inp);
@@ -21,4 +23,4 @@ private:
     double amount;
 };
 
-#endif // COLLECTVISITOR_H
+#endif // PAYVISITOR_H

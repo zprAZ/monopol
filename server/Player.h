@@ -17,6 +17,10 @@ public:
     int getPlayerId()const;
     void sendMessageToAll(const QString& inp);
     void sendMessageToThisPlayer(const QString& inp);
+    void payMoney(const double& payment);
+    void collectMoney(const double& income);
+    void addPrisonFreeCard();
+    void takeMoneyFromOthers(const double& amount, const QString& message2others);
 signals:
 
 public slots:
@@ -25,6 +29,8 @@ public slots:
 private:
 QPointer<ClientSocket> socket;
 const int playerId;
+double money;
+int prisonFreeCardsNumber;
 };
 
 #endif // PLAYER_H

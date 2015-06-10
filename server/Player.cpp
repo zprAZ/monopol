@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(const int &id, QPointer<ClientSocket> socketInp, QObject *parent) :
-    QObject(parent), playerId(id)
+    QObject(parent), playerId(id), money(0), prisonFreeCardsNumber(0)
 {
     this->socket = socketInp;
     connect(socket, SIGNAL(diceSignal()), this, SLOT(handleDiceTest()));
@@ -68,4 +68,46 @@ void Player::sendMessageToAll(const QString& inp)
 void Player::sendMessageToThisPlayer(const QString& inp)
 {
     this->socket->sendInfoMessage(inp);
+}
+
+void Player::payMoney(const double& payment)
+{
+    if(!this->money < payment)
+    {
+    this->money -=payment;
+    }else
+    {
+        this->sendMessageToThisPlayer(QString("You are bankrupt!"));
+        this->sendMessageToAll(QString("Player %1 has lost the game!").arg(this->playerId));
+        QObject* myFactory = this->parent();
+        bool callResult = QMetaObject::invokeMethod(myFactory,"handlePlayerBankruptcy",
+                                                Q_ARG(int, this->playerId));
+        if(!callResult)
+        {
+            // ZCU_TODO
+        }
+    }
+}
+
+void Player::collectMoney(const double& income)
+{
+    this->money += income;
+}
+
+void Player::addPrisonFreeCard()
+{
+    ++prisonFreeCardsNumber;
+}
+
+void Player::takeMoneyFromOthers(const double& amount, const QString& message2others)
+{
+    QObject* myFactory = this->parent();
+    bool callResult = QMetaObject::invokeMethod(myFactory,"doManyToOneTransaction",
+                                            Q_ARG(int, this->playerId),
+                                            Q_ARG(double, amount),
+                                            Q_ARG(QString, message2others));
+    if(!callResult)
+    {
+        // ZCU_TODO
+    }
 }

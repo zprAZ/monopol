@@ -22,7 +22,10 @@ HEADERS += \
     places/RailwayPlace.h \
     visitors/VisitorFactory.h \
     visitors/GoVisitor.h \
-    visitors/CollectVisitor.h
+    visitors/CollectVisitor.h \
+    visitors/PayVisitor.h \
+    visitors/ReceivePrisonFreeVisitor.h \
+    visitors/CollectFromOthersVisitor.h
 
 SOURCES += \
     ClientSocket.cpp \
@@ -44,7 +47,10 @@ SOURCES += \
     places/RailwayPlace.cpp \
     visitors/VisitorFactory.cpp \
     visitors/GoVisitor.cpp \
-    visitors/CollectVisitor.cpp
+    visitors/CollectVisitor.cpp \
+    visitors/PayVisitor.cpp \
+    visitors/ReceivePrisonFreeVisitor.cpp \
+    visitors/CollectFromOthersVisitor.cpp
 
 
 

@@ -108,5 +108,31 @@ void PlayerFactory::sendMessageToAllSockets(const QString& inp)
     });
 }
 
+void PlayerFactory::doManyToOneTransaction(const int& playerId, const double& amount
+                                           ,const QString& message)
+{
+    auto collector = std::find_if(players.begin(), players.end(),
+                                  [&playerId](Player* a)->bool
+    {return a->getPlayerId() == playerId; });
+    if(collector != players.end())
+    {
+        int counter = 0;
+        std::for_each(players.begin(), players.end(),
+                      [&](Player* a)
+        {
+            if(a->getPlayerId() != playerId)
+            {
+                ++counter;
+                a->sendMessageToThisPlayer(message);
+                a->payMoney(amount);
+            }
+
+        });
+        (*collector)->collectMoney(counter * amount);
+    }else
+    {
+        // ZCU_TODO
+    }
+}
 
 

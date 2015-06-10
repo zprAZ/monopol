@@ -17,9 +17,11 @@ class PlayerFactory : public QObject
 public:
     explicit PlayerFactory(QObject *parent = 0);
     QVector<Player*> getPlayers();
+    void handlePlayerBankruptcy(const int& playerId);
+    void doManyToOneTransaction(const int& playerId, const double& amount, const QString &message);
 signals:
     void playerReady();
-
+    void removePlayerFromBoard(int playerId);
 public slots:
 
     void createPlayer();

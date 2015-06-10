@@ -250,6 +250,10 @@ void ClientSocket::mySocketDosconnected()
     QObject* myFactory = this->parent();
     bool callResult = QMetaObject::invokeMethod(myFactory,"deleteDisconnectedPlayer",
                       Q_ARG(int,socketId));
+    if(!callResult)
+    {
+        // ZCU_TODO
+    }
     socket ->deleteLater();
 }
 
@@ -257,8 +261,13 @@ void ClientSocket::sendToAll(const QString& text)
 {
     QObject* myFactory = this->parent();
     bool callResult = QMetaObject::invokeMethod(myFactory,"sendMessageToAllSockets",
-                                                Q_ARG(QString,text));
+                                            Q_ARG(QString,text));
+    if(!callResult)
+    {
+        // ZCU_TODO
+    }
 }
+
 
 int ClientSocket::getSocketId() const
 {
