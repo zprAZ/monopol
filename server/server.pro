@@ -25,7 +25,13 @@ HEADERS += \
     visitors/CollectVisitor.h \
     visitors/PayVisitor.h \
     visitors/ReceivePrisonFreeVisitor.h \
-    visitors/CollectFromOthersVisitor.h
+    visitors/CollectFromOthersVisitor.h \
+    visitors/TownModernizationVisitor.h \
+    visitors/BuyPlaceVisitor.h \
+    visitors/BuyHouseVisitor.h \
+    visitors/BuyHotelVisitor.h \
+    visitors/DoNothingVisitor.h \
+    places/TaxPlace.h
 
 SOURCES += \
     ClientSocket.cpp \
@@ -50,7 +56,13 @@ SOURCES += \
     visitors/CollectVisitor.cpp \
     visitors/PayVisitor.cpp \
     visitors/ReceivePrisonFreeVisitor.cpp \
-    visitors/CollectFromOthersVisitor.cpp
+    visitors/CollectFromOthersVisitor.cpp \
+    visitors/TownModernizationVisitor.cpp \
+    visitors/BuyPlaceVisitor.cpp \
+    visitors/BuyHouseVisitor.cpp \
+    visitors/BuyHotelVisitor.cpp \
+    visitors/DoNothingVisitor.cpp \
+    places/TaxPlace.cpp
 
 
 

@@ -7,8 +7,9 @@
 #include <QVector>
 #include <QPointer>
 #include <map>
+#include <memory>
+#include "Player.h"
 
-class Player;
 class ClientSocket;
 
 class PlayerFactory : public QObject
@@ -16,7 +17,7 @@ class PlayerFactory : public QObject
     Q_OBJECT
 public:
     explicit PlayerFactory(QObject *parent = 0);
-    QVector<Player*> getPlayers();
+    QVector<std::shared_ptr<Player> > getPlayers();
     void handlePlayerBankruptcy(const int& playerId);
     void doManyToOneTransaction(const int& playerId, const double& amount, const QString &message);
 signals:
@@ -31,7 +32,7 @@ public slots:
 private:
 
     QTcpServer* server;
-    QVector<Player*> players;
+    QVector<std::shared_ptr<Player> > players;
     std::map<int, bool> idAssignment;
     std::map<int, ClientSocket*> allSockets;
 

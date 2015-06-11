@@ -13,6 +13,7 @@ public:
     explicit Token(const int& maxPos = 39, QObject *parent = 0);
     virtual void accept(Visitor& visitor);
     void setPlayer(std::shared_ptr<Player> inpPlayerPtr);
+    // void getPlayerId() const;
 signals:
 
 public slots:

@@ -22,7 +22,7 @@ PlayerFactory::PlayerFactory(QObject *parent) :
     }
 }
 
-QVector<Player *> PlayerFactory::getPlayers()
+QVector<std::shared_ptr<Player> > PlayerFactory::getPlayers()
 {
     return players;
 }
@@ -41,7 +41,7 @@ void PlayerFactory::createPlayer()
     QTcpSocket* socketTmp = server->nextPendingConnection();
     ClientSocket * socket = new ClientSocket(id ,socketTmp,this);
     allSockets.insert(std::pair<int, ClientSocket*>(id, socket));
-    Player* player = new Player(result->first, socket, this);
+    std::shared_ptr<Player> player(new Player(result->first, socket, this));
     players.push_back(player);
     std::map<int, bool>::iterator innerResult = std::find_if(idAssignment.begin(),
                                                         idAssignment.end(),
@@ -112,13 +112,13 @@ void PlayerFactory::doManyToOneTransaction(const int& playerId, const double& am
                                            ,const QString& message)
 {
     auto collector = std::find_if(players.begin(), players.end(),
-                                  [&playerId](Player* a)->bool
+                                  [&playerId](std::shared_ptr<Player> a)->bool
     {return a->getPlayerId() == playerId; });
     if(collector != players.end())
     {
         int counter = 0;
         std::for_each(players.begin(), players.end(),
-                      [&](Player* a)
+                      [&](std::shared_ptr<Player> a)
         {
             if(a->getPlayerId() != playerId)
             {

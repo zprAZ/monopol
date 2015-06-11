@@ -1,13 +1,13 @@
-#ifndef CHANCEPLACE_H
-#define CHANCEPLACE_H
+#ifndef TAXPLACE_H
+#define TAXPLACE_H
 
-#include <memory>
 #include "BoardPlace.h"
+#include <memory>
 
-class ChancePlace : public BoardPlace
+class TaxPlace : public BoardPlace
 {
 public:
-    ChancePlace(const int& inp, const QString& name);
+    TaxPlace(const int& id);
 
 private:
     virtual std::unique_ptr<Visitor> createVisitor(int playerId) const;
@@ -17,4 +17,4 @@ private:
     virtual void implementBuildHotel();
 };
 
-#endif // CHANCEPLACE_H
+#endif // TAXPLACE_H

@@ -2,11 +2,30 @@
 #include "BoardPlace.h"
 
 
-ChancePlace::ChancePlace(const int& inp):BoardPlace(inp)
+ChancePlace::ChancePlace(const int& inp, const QString &name):BoardPlace(inp, name)
 {
 }
 
-std::unique_ptr<Visitor> ChancePlace::createVisitor() const
+std::unique_ptr<Visitor> ChancePlace::createVisitor(int playerId) const
 {
+    // ZCU_TODO
+}
 
+int ChancePlace::implementGetNumberOfBuildHouses() const
+{
+    return 0;
+}
+int ChancePlace::implementGetNumberOfBuildHotels() const
+{
+    return 0;
+}
+
+void ChancePlace::implementBuildHouse()
+{
+    //do nothing
+}
+
+void ChancePlace::implementBuildHotel()
+{
+    // do nothing
 }

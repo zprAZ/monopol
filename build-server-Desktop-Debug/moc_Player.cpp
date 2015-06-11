@@ -75,6 +75,8 @@ void *Player::qt_metacast(const char *_clname)
     if (!_clname) return 0;
     if (!strcmp(_clname, qt_meta_stringdata_Player))
         return static_cast<void*>(const_cast< Player*>(this));
+    if (!strcmp(_clname, "std::enable_shared_from_this<Player>"))
+        return static_cast< std::enable_shared_from_this<Player>*>(const_cast< Player*>(this));
     return QObject::qt_metacast(_clname);
 }
 
