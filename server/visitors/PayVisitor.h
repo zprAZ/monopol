@@ -12,6 +12,7 @@ class PayVisitor : public PlayerVisitor
 {
 public:
     PayVisitor();
+    virtual std::unique_ptr<Visitor> clone() const;
     static std::unique_ptr<Visitor>  createPayVisitor();
     void init(double amount, const QString& message);
     void setMessage(const QString& message);

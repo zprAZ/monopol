@@ -21,7 +21,6 @@ HEADERS += \
     places/CounterPlace.h \
     places/RailwayPlace.h \
     visitors/VisitorFactory.h \
-    visitors/GoVisitor.h \
     visitors/CollectVisitor.h \
     visitors/PayVisitor.h \
     visitors/ReceivePrisonFreeVisitor.h \
@@ -31,7 +30,11 @@ HEADERS += \
     visitors/BuyHouseVisitor.h \
     visitors/BuyHotelVisitor.h \
     visitors/DoNothingVisitor.h \
-    places/TaxPlace.h
+    places/TaxPlace.h \
+    visitors/GoToPrisonVisitor.h \
+    visitors/CounterPaymentVisitor.h \
+    visitors/GoToDestinationVisitor.h \
+    visitors/MoveVisitor.h
 
 SOURCES += \
     ClientSocket.cpp \
@@ -52,7 +55,6 @@ SOURCES += \
     places/CounterPlace.cpp \
     places/RailwayPlace.cpp \
     visitors/VisitorFactory.cpp \
-    visitors/GoVisitor.cpp \
     visitors/CollectVisitor.cpp \
     visitors/PayVisitor.cpp \
     visitors/ReceivePrisonFreeVisitor.cpp \
@@ -62,7 +64,11 @@ SOURCES += \
     visitors/BuyHouseVisitor.cpp \
     visitors/BuyHotelVisitor.cpp \
     visitors/DoNothingVisitor.cpp \
-    places/TaxPlace.cpp
+    places/TaxPlace.cpp \
+    visitors/GoToPrisonVisitor.cpp \
+    visitors/CounterPaymentVisitor.cpp \
+    visitors/GoToDestinationVisitor.cpp \
+    visitors/MoveVisitor.cpp
 
 
 

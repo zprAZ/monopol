@@ -37,3 +37,8 @@ void PayVisitor::visit(Player& inp)
     inp.sendMessageToThisPlayer(this->message);
     inp.payMoney(this->amount);
 }
+
+std::unique_ptr<Visitor> PayVisitor::clone() const
+{
+    return std::unique_ptr<Visitor>(new PayVisitor(*this));
+}

@@ -10,6 +10,7 @@ class TownModernizationVisitor : public PlayerVisitor
 {
 public:
     TownModernizationVisitor();
+    virtual std::unique_ptr<Visitor> clone() const;
     std::unique_ptr<Visitor> createTownModernizationVisitor();
     void init(const double& houseRepairCost, const double& hotelRepairCost,
               const QString& playerMessage);

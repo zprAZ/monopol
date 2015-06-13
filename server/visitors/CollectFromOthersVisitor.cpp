@@ -45,3 +45,8 @@ void CollectFromOthersVisitor::visit(Player& inp)
     inp.sendMessageToThisPlayer(this->messageToCollector);
     inp.takeMoneyFromOthers(this->amount, this->messageToOthers);
 }
+
+std::unique_ptr<Visitor> CollectFromOthersVisitor::clone() const
+{
+    return std::unique_ptr<Visitor>(new CollectFromOthersVisitor(*this));
+}

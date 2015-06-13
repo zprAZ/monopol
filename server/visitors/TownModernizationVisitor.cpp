@@ -51,3 +51,8 @@ void TownModernizationVisitor::visit(Pawn& inp)
 {
     // do nothing
 }
+
+std::unique_ptr<Visitor> TownModernizationVisitor::clone() const
+{
+    return std::unique_ptr<Visitor>(new TownModernizationVisitor(*this));
+}

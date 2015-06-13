@@ -135,4 +135,9 @@ void PlayerFactory::doManyToOneTransaction(const int& playerId, const double& am
     }
 }
 
+void PlayerFactory::handlePlayerBankruptcy(const int& playerId)
+{
+    // ZCU_TODO
+}
+
 

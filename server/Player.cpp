@@ -1,5 +1,7 @@
 #include "Player.h"
+#include "places/RailwayPlace.h"
 #include <algorithm>
+#include <visitors/Visitor.h>
 
 Player::Player(const int &id, QPointer<ClientSocket> socketInp, QObject *parent) :
     QObject(parent), playerId(id), money(0), prisonFreeCardsNumber(0)
@@ -136,55 +138,103 @@ int Player::getNumberOfHotels() const
     return hotelCounter;
 }
 
-void Player::askToBuyHouse(const int& placeId, const QString& question)
+void Player::askToBuyHouse(const int& placeId, const QString& question, const double &payment)
 {
-    bool answer = socket->sendQuestionMessage(question);
-    if(answer)
+    if(!this->money < payment)
     {
-        auto result = std::find_if(places.begin(), places.end(),
+        bool answer = socket->sendQuestionMessage(question);
+        if(answer)
+        {
+            auto result = std::find_if(places.begin(), places.end(),
                                    [&placeId](std::shared_ptr<BoardPlace> a)
-        {return a->getId() == placeId;});
-        if(result != places.end())
-        {
-            (*result)->buildHouse();
-            this->socket->sendOwnershipMessage(placeId, true, this->playerId);
-        }else
-        {
-            // ZCU_TODO this should no happen
-        }
-
-    }
-}
-
-void Player::askToBuyHotel(const int& placeId, const QString& question)
-{
-    bool answer = socket->sendQuestionMessage(question);
-    if(answer)
-    {
-        auto result = std::find_if(places.begin(), places.end(),
-                                   [&placeId](std::shared_ptr<BoardPlace> a)
-        {return a->getId() == placeId;});
-        if(result != places.end())
-        {
-            (*result)->buildHotel();
-            this->socket->deleteAllHousesMessage(placeId);
-            this->socket->sendHotelMessage(placeId, true);
-        }else
-        {
+            {return a->getId() == placeId;});
+            if(result != places.end())
+            {
+                this->payMoney(payment);
+                (*result)->buildHouse();
+                this->socket->sendHouseMessage((*result)->getId(),true);
+            }else
+            {
             // ZCU_TODO this should not happen
+            }
+
         }
-
-    }
-}
-
-void Player::askToBuyPlace(const QString& question, std::shared_ptr<BoardPlace> placePtr)
-{
-    bool answer = socket->sendQuestionMessage(question);
-    if(answer)
+    }else
     {
-        places.push_back(placePtr);
-        this->sendMessageToAll(QString("Player Nr %1 have bought %2").arg(this->getPlayerId())
-                               .arg(placePtr->getName()));
-        socket->sendOwnershipMessage(placePtr->getId(),true, this->getPlayerId());
+        this->socket->sendInfoMessage(QString("You do not have enough money to build a house"));
     }
 }
+
+void Player::askToBuyHotel(const int& placeId, const QString& question, const double& payment)
+{
+    if(! this->money < payment)
+    {
+        bool answer = socket->sendQuestionMessage(question);
+        if(answer)
+        {
+            auto result = std::find_if(places.begin(), places.end(),
+                                   [&placeId](std::shared_ptr<BoardPlace> a)
+            {return a->getId() == placeId;});
+            if(result != places.end())
+            {
+                this->payMoney(payment);
+                (*result)->buildHotel();
+                this->socket->deleteAllHousesMessage(placeId);
+                this->socket->sendHotelMessage(placeId, true);
+            }else
+            {
+            // ZCU_TODO this should not happen
+            }
+
+        }
+    }else
+    {
+        this->socket->sendInfoMessage(QString("You do not have enough money to build a hotel"));
+    }
+}
+
+void Player::askToBuyPlace(const QString& question, std::shared_ptr<BoardPlace> placePtr,
+                           const double& payment)
+{
+    if(!this->money < payment)
+    {
+        bool answer = socket->sendQuestionMessage(question);
+        if(answer)
+        {
+            this->payMoney(payment);
+            places.push_back(placePtr);
+            placePtr->setOwnership(this->shared_from_this());
+            this->sendMessageToAll(QString("Player Nr %1 have bought %2").arg(this->getPlayerId())
+                               .arg(placePtr->getName()));
+            socket->sendOwnershipMessage(placePtr->getId(),true, this->getPlayerId());
+        }
+    }else
+    {
+        socket->sendInfoMessage(QString("You do not have enough money to buy %1").arg(placePtr->getName()));
+    }
+}
+
+int Player::giveNumberOfRailwaysOwned() const
+{
+    int result = 0;
+    for(auto a: places)
+    {
+        RailwayPlace* ptr = dynamic_cast<RailwayPlace* >(a.get());
+        if(ptr != nullptr)
+        {
+            ++result;
+        }
+    }
+    return result;
+}
+
+void Player::accept(std::unique_ptr<Visitor> visitor)
+{
+    visitor->visit(*this);
+}
+
+Player::~Player()
+{
+    // we need to send proper messages here
+}
+

@@ -38,3 +38,8 @@ void CollectVisitor::visit(Player& inp)
     inp.sendMessageToThisPlayer(this->message);
     inp.collectMoney(this->amount);
 }
+
+std::unique_ptr<Visitor> CollectVisitor::clone() const
+{
+    return std::unique_ptr<Visitor>(new CollectVisitor(*this));
+}

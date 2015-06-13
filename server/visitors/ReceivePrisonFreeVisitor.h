@@ -11,6 +11,7 @@ class ReceivePrisonFreeVisitor : public PlayerVisitor
 {
 public:
     ReceivePrisonFreeVisitor();
+    virtual std::unique_ptr<Visitor> clone() const;
     virtual void visit(Pawn& inp);
     virtual void visit(Player& inp);
     static std::unique_ptr<Visitor>  createReceivePrisonFreeVisitor();

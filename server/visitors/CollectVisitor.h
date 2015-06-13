@@ -10,6 +10,7 @@ class CollectVisitor : public PlayerVisitor
 {
 public:
     CollectVisitor();
+    virtual std::unique_ptr<Visitor> clone() const;
     static std::unique_ptr<Visitor>  createCollectVisitor();
     void init(double amount, const QString& message);
     void setMessage(const QString& message);

@@ -1,6 +1,9 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
+#include "places/BoardPlace.h"
+
+
 #include <QObject>
 
 class GameBoard : public QObject
@@ -12,6 +15,9 @@ public:
 signals:
 
 public slots:
+
+private:
+    std::vector<std::shared_ptr<BoardPlace>> placesVector;
 
 };
 

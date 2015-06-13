@@ -20,3 +20,8 @@ std::unique_ptr<Visitor>  ReceivePrisonFreeVisitor::createReceivePrisonFreeVisit
 {
     return std::unique_ptr<Visitor>(new ReceivePrisonFreeVisitor);
 }
+
+std::unique_ptr<Visitor> ReceivePrisonFreeVisitor::clone() const
+{
+    return std::unique_ptr<Visitor>(new ReceivePrisonFreeVisitor(*this));
+}

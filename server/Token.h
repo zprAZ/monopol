@@ -10,8 +10,8 @@ class Token : public Pawn
 {
     Q_OBJECT
 public:
-    explicit Token(const int& maxPos = 39, QObject *parent = 0);
-    virtual void accept(Visitor& visitor);
+    explicit Token(const int& id, QObject *parent = 0);
+    virtual void accept(std::unique_ptr<Visitor> visitor);
     void setPlayer(std::shared_ptr<Player> inpPlayerPtr);
     // void getPlayerId() const;
 signals:
@@ -19,16 +19,16 @@ signals:
 public slots:
 
 private:
-
-    virtual void implementGo(const int& inp) = 0;
-    virtual int implementLastMovement() const = 0;
-    virtual bool implementValidation() const = 0;
-    virtual bool implementInvalidation() = 0;
+    virtual void implementMovement(const int& inp, const QString& message);
+    virtual void implementGoToDestination(const int& destination, const bool& startBonus,
+                         const QString& message, const bool& forwardDirectionFlag);
+    virtual void implementGoToPrison(const int& roundNumber);
+    virtual void implementMovePayment(const double& amountPerMove, const QString& playerMessage);
 
     int current_position_m;
     static int max_position_m;
     std::shared_ptr<Player> player_m;
-    bool valid_m = false;
+    const int tokenId;
 };
 
 #endif // TOKEN_H

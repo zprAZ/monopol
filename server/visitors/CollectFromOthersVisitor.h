@@ -12,6 +12,7 @@ class CollectFromOthersVisitor : public PlayerVisitor
 {
 public:
     CollectFromOthersVisitor();
+    virtual std::unique_ptr<Visitor> clone() const;
     static std::unique_ptr<Visitor>  createCollectFromOthersVisitor();
     void init(double amount, const QString& messageCollector, const QString& messageAll);
     void setMessage2Others(const QString& message);

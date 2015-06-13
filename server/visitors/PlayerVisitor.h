@@ -10,6 +10,7 @@ class PlayerVisitor : public Visitor
 {
 public:
     PlayerVisitor();
+    virtual std::unique_ptr<Visitor> clone() const = 0;
     virtual void visit(Pawn& inp) = 0;
     virtual void visit(Player& inp) = 0;
 };
