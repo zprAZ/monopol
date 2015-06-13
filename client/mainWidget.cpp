@@ -80,11 +80,11 @@ mainWidget::mainWidget(QWidget *parent) :
     railwayWidget* westRailway = new railwayWidget(15, QString("WEST"), railwayWidget::alignment::RIGHT);
     railways.push_back(westRailway);
     allPlaces.push_back(westRailway);
-    // liverpol
-    cityWidget* liverpol = new cityWidget(16, QString("LIVERPOL"), cityWidget::alignment::RIGHT);
-    liverpol ->setCityColor(QColor(Qt::cyan));
-    cities.push_back(liverpol);
-    allPlaces.push_back(liverpol);
+    // liverpool
+    cityWidget* liverpool = new cityWidget(16, QString("LIVERPOOL"), cityWidget::alignment::RIGHT);
+    liverpool ->setCityColor(QColor(Qt::cyan));
+    cities.push_back(liverpool);
+    allPlaces.push_back(liverpool);
     // chance 3
     chanceWidget* chance3 = new chanceWidget(17, chanceWidget::alignment::RIGHT);
     allPlaces.push_back(chance3);
@@ -264,7 +264,7 @@ mainWidget::mainWidget(QWidget *parent) :
     rightLayout ->addWidget(sewilla);
     rightLayout ->addWidget(madryt);
     rightLayout ->addWidget(westRailway);
-    rightLayout ->addWidget(liverpol);
+    rightLayout ->addWidget(liverpool);
     rightLayout ->addWidget(chance3);
     rightLayout ->addWidget(glasgow);
     rightLayout ->addWidget(london);
