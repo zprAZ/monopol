@@ -33,10 +33,15 @@ public:
     void askToBuyPlace(const QString& question, std::shared_ptr<BoardPlace> placePtr, const double &payment);
     int giveNumberOfRailwaysOwned() const;
     virtual ~Player();
+
 signals:
+    void playerClickedDice();
 
 public slots:
-   void handleDiceTest();
+    void requestForDice();
+
+private slots:
+   void handlePlayerDiceClick();
 
 private:
 QPointer<ClientSocket> socket;

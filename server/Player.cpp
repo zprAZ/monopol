@@ -7,7 +7,7 @@ Player::Player(const int &id, QPointer<ClientSocket> socketInp, QObject *parent)
     QObject(parent), playerId(id), money(0), prisonFreeCardsNumber(0)
 {
     this->socket = socketInp;
-    connect(socket, SIGNAL(diceSignal()), this, SLOT(handleDiceTest()));
+    connect(socket, SIGNAL(diceSignal()), this, SLOT(handlePlayerDiceClick()));
 }
 
 void Player::testCommunication()
@@ -48,9 +48,10 @@ void Player::testCommunication()
    // socket->sen
 }
 
-void Player::handleDiceTest()
+void Player::handlePlayerDiceClick()
 {
-    socket->sendInfoMessage(QString("DICE"));
+    //socket->sendInfoMessage(QString("DICE"));
+    emit playerClickedDice();
 }
 
 QPointer<ClientSocket> Player::getSocketPointer()
@@ -236,5 +237,10 @@ void Player::accept(std::unique_ptr<Visitor> visitor)
 Player::~Player()
 {
     // we need to send proper messages here
+}
+
+void Player::requestForDice()
+{
+    this->socket->sendInfoMessage(QString("YOUR TURN! \n Please click Dice button."));
 }
 

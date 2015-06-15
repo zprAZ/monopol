@@ -9,7 +9,7 @@ class ChanceQueue : public QObject
 {
     Q_OBJECT
 public:
-   ChanceQueue(QObject *parent = 0);
+   explicit ChanceQueue(QObject *parent = 0);
     std::unique_ptr<Visitor> getVisitor();
     void shuffle();
 signals:

@@ -151,4 +151,80 @@ GameBoard::GameBoard(QObject *parent) :
     placesVector.push_back(std::shared_ptr<BoardPlace>(vienna));
 
     Q_ASSERT(placesVector.size() == 40);
+
+    // TOKENS CONSTRUCTION
+    QPointer<Token> token0(new Token(0, placesVector, this));
+    tokens.push_back(token0);
+    QPointer<Token> token1(new Token(1, placesVector, this));
+    tokens.push_back(token1);
+    QPointer<Token> token2(new Token(2, placesVector, this));
+    tokens.push_back(token2);
+    QPointer<Token> token3(new Token(3, placesVector, this));
+    tokens.push_back(token3);
+    QPointer<Token> token4(new Token(4, placesVector, this));
+    tokens.push_back(token4);
+    // TOKENS SIGNALS AND SLOTS
+    for (auto a : tokens)
+    {
+        bool result1 = QObject::connect(a, SIGNAL(startGame()), this, SLOT(startGame()));
+        Q_ASSERT(result1);
+    }
+
+    bool res1 = QObject::connect(&playerFactory, SIGNAL(playerReady(std::shared_ptr<Player>)),
+                     this, SLOT(addPlayer(std::shared_ptr<Player>)));
+    bool res2 = QObject::connect(&playerFactory, SIGNAL(removePlayerFromBoard(int)),
+                                 this, SLOT(handleRemovePlayerRequest(int)));
+
+}
+
+void GameBoard::startGame()
+{
+    Q_ASSERT(tokens.size() == 5);
+    while(true)
+    {
+        if(tokens[1]->ifIsValid())
+        {
+            if(tokens[1] -> ifNotInPrison())
+            {
+                tokens[1] -> doNextMove();
+            }
+        }
+        if(tokens[2]->ifIsValid())
+        {
+            if(tokens[2] -> ifNotInPrison())
+            {
+                tokens[2] -> doNextMove();
+            }
+        }
+        if(tokens[3]->ifIsValid())
+        {
+            if(tokens[3] -> ifNotInPrison())
+            {
+                tokens[3] -> doNextMove();
+            }
+        }
+        if(tokens[4]->ifIsValid())
+        {
+            if(tokens[4] -> ifNotInPrison())
+            {
+                tokens[4] -> doNextMove();
+            }
+        }
+        for(auto a: tokens)
+        {
+            a-> updateRoundNumber();
+        }
+
+    }
+}
+
+void GameBoard::addPlayer(std::shared_ptr<Player> newPlayer)
+{
+    // ZCU_TODO check id id is correct
+    tokens[newPlayer->getPlayerId()] ->setPlayer(newPlayer);
+}
+
+void GameBoard::handleRemovePlayerRequest(int playerId)
+{
+    tokens[playerId] -> removePlayer();
 }

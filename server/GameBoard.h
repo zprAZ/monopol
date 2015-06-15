@@ -2,6 +2,9 @@
 #define GAMEBOARD_H
 
 #include "places/BoardPlace.h"
+#include "Player.h"
+#include "Token.h"
+#include "PlayerFactory.h"
 
 
 #include <QObject>
@@ -15,10 +18,14 @@ public:
 signals:
 
 public slots:
+    void startGame();
+    void addPlayer(std::shared_ptr<Player> newPlayer);
+    void handleRemovePlayerRequest(int playerId);
 
 private:
     std::vector<std::shared_ptr<BoardPlace>> placesVector;
-
+    std::vector<QPointer<Token>> tokens;
+    PlayerFactory playerFactory;
 };
 
 #endif // GAMEBOARD_H

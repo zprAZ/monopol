@@ -9,8 +9,8 @@ PlayerFactory::PlayerFactory(QObject *parent) :
     server = new QTcpServer(this);
     server->setMaxPendingConnections(4);
     bool res1 = connect(server, SIGNAL(newConnection()), this, SLOT(createPlayer()));
-    bool res2 = connect(this, SIGNAL(playerReady()), this, SLOT(test()));
-    Q_ASSERT(res1 && res2);
+    //bool res2 = connect(this, SIGNAL(playerReady()), this, SLOT(test()));
+    Q_ASSERT(res1); //&& res2);
     idAssignment.insert(std::pair<int, bool>(1,true)); // true indicates
     idAssignment.insert(std::pair<int, bool>(2,true));// that assignment is possible
     idAssignment.insert(std::pair<int, bool>(3,true));
@@ -54,7 +54,7 @@ void PlayerFactory::createPlayer()
         {
             // we need to close application
         }
-    emit playerReady();
+    emit playerReady(player);
     }else
     {
         //ZCU_TODO

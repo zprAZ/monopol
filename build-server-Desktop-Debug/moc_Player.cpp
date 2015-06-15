@@ -22,21 +22,26 @@ static const uint qt_meta_data_Player[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+       8,    7,    7,    7, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-       8,    7,    7,    7, 0x0a,
+      28,    7,    7,    7, 0x0a,
+      45,    7,    7,    7, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Player[] = {
-    "Player\0\0handleDiceTest()\0"
+    "Player\0\0playerClickedDice()\0"
+    "requestForDice()\0handlePlayerDiceClick()\0"
 };
 
 void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -45,7 +50,9 @@ void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_ASSERT(staticMetaObject.cast(_o));
         Player *_t = static_cast<Player *>(_o);
         switch (_id) {
-        case 0: _t->handleDiceTest(); break;
+        case 0: _t->playerClickedDice(); break;
+        case 1: _t->requestForDice(); break;
+        case 2: _t->handlePlayerDiceClick(); break;
         default: ;
         }
     }
@@ -86,10 +93,16 @@ int Player::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void Player::playerClickedDice()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
 QT_END_MOC_NAMESPACE

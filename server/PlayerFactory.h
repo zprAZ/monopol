@@ -21,7 +21,7 @@ public:
     void handlePlayerBankruptcy(const int& playerId);
     void doManyToOneTransaction(const int& playerId, const double& amount, const QString &message);
 signals:
-    void playerReady();
+    void playerReady(std::shared_ptr<Player> player);
     void removePlayerFromBoard(int playerId);
 public slots:
 

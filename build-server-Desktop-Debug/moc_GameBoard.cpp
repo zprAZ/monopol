@@ -22,26 +22,39 @@ static const uint qt_meta_data_GameBoard[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      11,   10,   10,   10, 0x0a,
+      33,   23,   10,   10, 0x0a,
+      77,   68,   10,   10, 0x0a,
+
        0        // eod
 };
 
 static const char qt_meta_stringdata_GameBoard[] = {
-    "GameBoard\0"
+    "GameBoard\0\0startGame()\0newPlayer\0"
+    "addPlayer(std::shared_ptr<Player>)\0"
+    "playerId\0handleRemovePlayerRequest(int)\0"
 };
 
 void GameBoard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
-    Q_UNUSED(_a);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        Q_ASSERT(staticMetaObject.cast(_o));
+        GameBoard *_t = static_cast<GameBoard *>(_o);
+        switch (_id) {
+        case 0: _t->startGame(); break;
+        case 1: _t->addPlayer((*reinterpret_cast< std::shared_ptr<Player>(*)>(_a[1]))); break;
+        case 2: _t->handleRemovePlayerRequest((*reinterpret_cast< int(*)>(_a[1]))); break;
+        default: ;
+        }
+    }
 }
 
 const QMetaObjectExtraData GameBoard::staticMetaObjectExtraData = {
@@ -75,6 +88,11 @@ int GameBoard::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE

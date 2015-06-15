@@ -22,25 +22,37 @@ static const uint qt_meta_data_Token[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+       7,    6,    6,    6, 0x05,
+
+ // slots: signature, parameters, type, tag, flags
+      19,    6,    6,    6, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Token[] = {
-    "Token\0"
+    "Token\0\0startGame()\0handlePlayerDiceClick()\0"
 };
 
 void Token::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        Q_ASSERT(staticMetaObject.cast(_o));
+        Token *_t = static_cast<Token *>(_o);
+        switch (_id) {
+        case 0: _t->startGame(); break;
+        case 1: _t->handlePlayerDiceClick(); break;
+        default: ;
+        }
+    }
     Q_UNUSED(_a);
 }
 
@@ -75,6 +87,17 @@ int Token::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = Pawn::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 2)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 2;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void Token::startGame()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
 QT_END_MOC_NAMESPACE

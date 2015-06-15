@@ -30,23 +30,25 @@ static const uint qt_meta_data_PlayerFactory[] = {
        2,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-      15,   14,   14,   14, 0x05,
-      38,   29,   14,   14, 0x05,
+      22,   15,   14,   14, 0x05,
+      68,   59,   14,   14, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      65,   14,   14,   14, 0x0a,
-      80,   14,   14,   14, 0x0a,
-      90,   87,   14,   14, 0x0a,
-     124,  120,   14,   14, 0x0a,
+      95,   14,   14,   14, 0x0a,
+     110,   14,   14,   14, 0x0a,
+     120,  117,   14,   14, 0x0a,
+     154,  150,   14,   14, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_PlayerFactory[] = {
-    "PlayerFactory\0\0playerReady()\0playerId\0"
-    "removePlayerFromBoard(int)\0createPlayer()\0"
-    "test()\0id\0deleteDisconnectedPlayer(int)\0"
-    "inp\0sendMessageToAllSockets(QString)\0"
+    "PlayerFactory\0\0player\0"
+    "playerReady(std::shared_ptr<Player>)\0"
+    "playerId\0removePlayerFromBoard(int)\0"
+    "createPlayer()\0test()\0id\0"
+    "deleteDisconnectedPlayer(int)\0inp\0"
+    "sendMessageToAllSockets(QString)\0"
 };
 
 void PlayerFactory::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -55,7 +57,7 @@ void PlayerFactory::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         Q_ASSERT(staticMetaObject.cast(_o));
         PlayerFactory *_t = static_cast<PlayerFactory *>(_o);
         switch (_id) {
-        case 0: _t->playerReady(); break;
+        case 0: _t->playerReady((*reinterpret_cast< std::shared_ptr<Player>(*)>(_a[1]))); break;
         case 1: _t->removePlayerFromBoard((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->createPlayer(); break;
         case 3: _t->test(); break;
@@ -106,9 +108,10 @@ int PlayerFactory::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void PlayerFactory::playerReady()
+void PlayerFactory::playerReady(std::shared_ptr<Player> _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
